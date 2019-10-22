@@ -1,0 +1,367 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family:PingFangSC;
+  font-weight:400;
+}
+body{
+  margin: 0;
+  padding: 0;
+  background: #F0F2F5;
+}
+a{
+  text-decoration:none
+}
+.centerCon{
+  width: 1136px;
+  /*height: 936px;*/
+  background: #fff;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 24px;
+  padding-bottom: 24px;
+}
+.dots{
+  margin-top: 9px;
+}
+/*二级tab样式*/
+.subTabCon{
+  width: 100%;
+  height: 34px;
+  background: #fff;
+}
+.subTab{
+  width: 1152px;
+  margin: auto;
+}
+.subTabItem{
+  width: 72px;
+  height: 32px;
+  border-bottom: 2px solid transparent;
+  float: left;
+  margin-right: 32px;
+  line-height: 32px;
+  text-align: center;
+}
+.subTabText{
+  color: rgba(0, 0, 0, .65);
+}
+.subTabItemBorder{
+  width: 100%;
+  height: 2px;
+}
+.router-link-active .subTabText{
+  color: rgba(24, 144, 255, .85);
+}
+.router-link-active .subTabItemBorder{
+  background: #1890FF;
+}
+
+/*表格相关样式*/
+.centerTitle{
+  height: 57px;
+  border-bottom: 1px solid #E8E8E8;
+  line-height: 57px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, .85);
+  font-weight:600;
+  padding-left: 24px;
+}
+.tableCon{
+  width: 1088px;
+  margin: auto;
+  margin-top: 16px;
+}
+.searchCon{
+  width: 1088px;
+  height: 32px;
+  margin: auto;
+  margin-top: 23px;
+}
+.searchItem{
+  height: 32px;
+}
+.el-form-item__content{
+  line-height: 32px;
+}
+.el-input__inner{
+  height: 32px;
+  line-height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.el-form-item__label{
+  height: 32px;
+  line-height: 32px;
+  color: rgba(0, 0, 0, .85);
+  padding: 0;
+}
+.el-input__icon{
+  line-height: 32px;
+}
+.CoBtn{
+  height: 32px;
+  padding: 5px 22px;
+  background: #1890FF;
+}
+.CoResetBtn{
+  height: 32px;
+  padding: 5px 23px;
+  color: rgba(0, 0, 0, 0.65);
+  border: 1px solid #D9D9D9;
+}
+.btnGroupCon{
+  margin-top: 24px;
+  margin-left: 24px;
+}
+.totalTableSize{
+  width: 1088px;
+  height: 40px;
+  margin: auto;
+  margin-top: 16px;
+  background: #E6F7FF;
+  border: 1px solid #91D5FF;
+  border-radius: 4px;
+}
+.tipIcon{
+  width: 14px;
+  height: 14px;
+  float: left;
+  margin-top: 13px;
+  margin-left: 16px;
+  background:url(~admin/assets/tip.png) no-repeat;
+}
+.totalCon{
+  width: 500px;
+  line-height: 40px;
+  color: rgba(0, 0, 0, 0.65);
+  margin-left: 10px;
+  float: left;
+}
+.el-input-number{
+  width: 120px;
+  line-height: 32px;
+}
+.el-input-number.is-controls-right .el-input-number__decrease, .el-input-number.is-controls-right .el-input-number__increase{
+  line-height: 15px;
+}
+.el-checkbox__label{
+  line-height: 32px;
+}
+/*表格样式*/
+.el-table thead th{
+  height: 56px;
+  background-color:rgba(250,250,250,1);
+  border-radius:4px 4px 0px 0px;
+  color: rgba(0, 0, 0, .85);
+}
+.el-table thead th>.cell{
+  font-size:16px;
+  font-weight:600;
+}
+.el-table td, .el-table th{
+  padding: 8px 0;
+}
+.el-table .cell{
+  color: rgba(0, 0, 0, .65);
+}
+.tableBtn{
+  display: inline-block;
+}
+.homeTableCon .el-table thead th{
+  height: 40px;
+  background: #fff;
+}
+
+/*上传文件样式*/
+.el-upload {
+  width: 104px;
+  height: 104px;
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.45);
+  width: 104px;
+  height: 104px;
+  line-height: 104px;
+  text-align: center;
+}
+.avatar {
+  width: 104px;
+  height: 104px;
+  display: block;
+}
+.el-upload--picture-card{
+  line-height: 104px;
+}
+.uploadFile .el-upload{
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: left;
+}
+.el-upload-list--picture-card .el-upload-list__item{
+  width: 104px;
+  height: 104px;
+}
+
+/*搜索区域样式*/
+.searchItem{
+  float: left;
+  margin-right: 56px;
+  height: 32px;
+}
+.searchLabel{
+  height: 32px;
+  float: left;
+  text-align: right;
+  line-height: 32px;
+  color: rgba(0, 0, 0, .85);
+}
+.searchBtnCon{
+  float: left;
+}
+.el-select{
+  width: 100%;
+}
+.searchInput{
+  float: left;
+}
+
+/*表格中小弹窗相关样式*/
+.el-popover{
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+.delTips{
+  width: 200px;
+  height: 32px;
+  line-height: 32px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 6px 9px;
+  border-radius: 4px;
+  position: relative;
+}
+.delArrow{
+  width:0;
+  height:0;
+  position: absolute;
+  top: 42px;
+  left: 100px;
+  border:9px solid transparent;
+  border-top-color:rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+}
+.confirmText{
+  width: 213px;
+  margin-top: 16px;
+}
+.confirmIcon{
+  padding-left: 16px;
+  padding-right: 4px;
+  color: #FAAD14;
+}
+.confirmTips{
+  color: rgba(0, 0, 0, 0.65);
+}
+.confirmBtnCon{
+  width: 49px;
+  height: 24px;
+  margin-top: 12px;
+  margin-left: 148px;
+  margin-bottom: 15px;
+}
+.confirmBtnCon .el-button--primary{
+  background-color: #1890FF;
+  border-color: #1890FF;
+}
+.confirmBtnCon .el-button{
+  width: 49px;
+  height: 24px;
+  padding: 1px 8px;
+}
+
+/*三级tab菜单样式*/
+.thirdTabCon{
+  height: 56px;
+  border-bottom: 1px solid #E8E8E8;
+}
+.thirdTab{
+  overflow: hidden;
+}
+.thirdTabItem{
+  height: 56px;
+  line-height: 56px;
+}
+.thirdTab{
+  padding-left: 24px;
+}
+.thirdTabText{
+  font-size: 18px;
+}
+.router-link-active .thirdTabItemBorder{
+  background: #1890FF;
+}
+
+
+/*新建编辑表单样式*/
+.formCon{
+  width: 1088px;
+  margin: auto;
+  margin-top: 23px;
+}
+.formItem{
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+.label{
+  width: 320px;
+  height: 32px;
+  float: left;
+  text-align: right;
+  line-height: 32px;
+  color: rgba(0, 0, 0, .85);
+}
+.input{
+  width: 464px;
+  min-height: 32px;
+  float: left;
+  line-height: 32px;
+}
+.numberInput{
+  width: 120px;
+}
+.uploadTips{
+  height: 24px;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 24px;
+}
+.formBtnGroup{
+  width: 210px;
+  margin: auto;
+  margin-top: 48px;
+}
+.numberText{
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  float: left;
+  margin-left: 8px;
+}
+.el-date-editor .el-range__icon{
+  line-height: 25px;
+}
+.el-date-editor .el-range-separator{
+  line-height: 25px;
+}
