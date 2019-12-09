@@ -12,7 +12,7 @@
             <div class="status">{{item.return_msg === '' ? '提现成功' : item.return_msg}}</div>
           </div>
           <div class="money">
-            ¥{{item.amount / 100}}
+            ¥{{item.money}}
           </div>
         </div>
         <div class="footerItem">
@@ -48,6 +48,10 @@
             .then(res => {
               if(res.code === "0"){
                 if(res.count > 0){
+                  for(let i=0;i<res.data.length;i++){
+                    let money = (res.data[i].amount / 100).toFixed(2);
+                    res.data[i].money = money;
+                  }
                   this.data = res.data;
                 }else {
                   this.showNoData = true;

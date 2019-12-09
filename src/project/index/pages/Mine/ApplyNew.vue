@@ -9,7 +9,7 @@
       </div>
       <div class="balanceTotal" v-if="Bcoins !=''">{{Bcoins}}金币</div>
       <div class="balanceTotal" v-else>— —</div>
-      <div class="balanceRmb"  v-if="Bcoins !=''">约¥{{Bcoins/10000}}元</div>
+      <div class="balanceRmb"  v-if="Bcoins !=''">约¥{{balanceRmb}}元</div>
       <div class="balanceRmb"  v-else>— —</div>
     </div>
     <div class="itemCon paddingRight">
@@ -78,7 +78,8 @@
           twelveData:{},
           dataList:[],
           number:'',
-          optionType:''
+          optionType:'',
+          balanceRmb:''
         }
       },
       created(){
@@ -87,6 +88,7 @@
             // console.log('res',res)
             if(res.code === '0'){
               this.Bcoins = res.data.Bcoins;
+              this.balanceRmb = (this.Bcoins/10000).toFixed(2);
             }
           });
         // this.Bcoins = this.$route.query.Bcoins;
@@ -256,9 +258,10 @@
   }
   .balanceTopLeft{
     float: left;
-    width: 80*2px;
+    width: 90*2px;
     font-size: 28px;
     opacity: .6;
+    overflow: hidden;
   }
   .balanceTopRight{
     float: right;
@@ -341,7 +344,7 @@
     width: 86*2px;
     height: 48px;
     line-height: 48px;
-    font-size: 10px;
+    font-size: 20px;
     text-align: center;
     background:linear-gradient(270deg,rgba(228,28,52,1) 0%,rgba(244,121,50,1) 100%);
     border-radius:200px 200px 0px 200px;

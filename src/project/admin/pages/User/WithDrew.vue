@@ -25,7 +25,7 @@
           {prop: 'desc', label: '订单描述', width: '250', align: 'left'},
           {prop: 'amount', label: '金额', width: '100', align: 'left',formatter:this.formatterAmount},
           {prop: 'nickName', label: '微信昵称', align: 'left',width: '200'},
-          {prop: 'return_msg', label: '订单状态', align: 'left',width: '100'},
+          {prop: 'return_msg', label: '错误信息', align: 'left',width: '100'},
           {prop: 'createTime', label: '创建时间', align: 'left',width: '200',formatter:this.formatter}
         ],
         tableData: [],
@@ -68,7 +68,8 @@
         return val;
       },
       formatterAmount(row, column, cellValue){
-        let val = cellValue / 100 +'元';
+        let val = cellValue / 100;
+        val = val.toFixed(2) + '元';
         return val;
       },
       //格式化时间
