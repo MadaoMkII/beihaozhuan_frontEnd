@@ -13,9 +13,10 @@
       </div>
       <div class="giftItem threeImg">
         <div class="btn twoBtn" v-if="showBtn" @click="go('three')">我要去邀请</div>
-        <div class="btn twoBtn" v-if="inviteData.recentAmount < inviteData.requireAmount" @click="go('showPoster')">我要去邀请</div>
-        <div class="btn twoBtn" v-else-if="inviteData.recentAmount >= inviteData.requireAmount && !inviteData.completed" @click="go('getReward')">领取礼金</div>
-        <div class="btn twoBtn" v-else-if="inviteData.completed">已完成</div>
+        <div class="btn twoBtn" v-else-if="inviteData && !showBtn && inviteData.recentAmount < inviteData.requireAmount" @click="go('showPoster')">我要去邀请</div>
+        <div class="btn twoBtn" v-else-if="inviteData && inviteData.recentAmount >= inviteData.requireAmount && !inviteData.completed" @click="go('getReward')">领取礼金</div>
+        <div class="btn twoBtn" v-else-if="inviteData && inviteData.completed">已完成</div>
+        <div class="btn twoBtn" v-else-if="!inviteData" @click="go('notyet')">未开始</div>
         <div class="tips oneTips" @click="showTipsPop('邀请攻略')">邀请攻略></div>
       </div>
     </div>
@@ -87,9 +88,9 @@
               // console.log('新手任务', res);
               if (res.code === "0") {
                 const found = res.data.find(element => element.missionEventName === '活动—双十二邀请好友得现金');
-                this.inviteData = found;
-                console.log('inviteData',this.inviteData)
-                this.showBtn = false;
+                  this.inviteData = found;
+                  console.log('inviteData',this.inviteData)
+                  this.showBtn = false;
               }
             })
         },
@@ -125,6 +126,9 @@
                   case 'three':
                     this.showPoster=true;
                     this.getInviteInfo();
+                    break;
+                  case 'notyet':
+                    alert('当前任务未开始');
                     break;
                 }
               } else {
