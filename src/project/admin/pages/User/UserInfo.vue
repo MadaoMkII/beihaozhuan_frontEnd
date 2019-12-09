@@ -55,6 +55,12 @@
               <div class="subTabItemBorder"></div>
             </router-link>
           </div>
+          <div class="subTabItem thirdTabItem">
+            <router-link :to="{name:'WithDrew',query:{'uuid':this.uuid}}" exact>
+              <div class="subTabText thirdTabText">提现列表</div>
+              <div class="subTabItemBorder"></div>
+            </router-link>
+          </div>
         </div>
       </div>
       <div v-if="routerName === 'UserOrderList'">
@@ -66,6 +72,9 @@
       <div v-if="routerName === 'Invite'">
         <Invite></Invite>
       </div>
+      <div v-if="routerName === 'WithDrew'">
+        <WithDrew></WithDrew>
+      </div>
     </div>
   </div>
 </template>
@@ -74,6 +83,7 @@
     import UserOrderList from 'admin/pages/User/UserOrderList.vue'
     import Account from 'admin/pages/User/Account.vue'
     import Invite from 'admin/pages/User/Invite.vue'
+    import WithDrew from 'admin/pages/User/WithDrew.vue'
     import USER from 'admin/service/user-service.js'
     export default {
       name: "UserInfo",
@@ -86,13 +96,13 @@
             tel_number:'',
             Bcoins:'',
             hasVerifyWechat:'',
-            avatar:'~admin/assets/headImg.png',
+            avatar:'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/images/20191209123821.png',
             created_at:'',
           }
         }
       },
       components: {
-        UserOrderList,Account,Invite
+        UserOrderList,Account,Invite,WithDrew
       },
       created() {
         this.routerName =this.$route.name;

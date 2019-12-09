@@ -14,6 +14,12 @@
             <div class="subTabItemBorder"></div>
           </router-link>
         </div>
+        <div class="subTabItem">
+          <router-link :to="{name:'ActivityMg'}">
+            <div class="subTabText">活动管理</div>
+            <div class="subTabItemBorder"></div>
+          </router-link>
+        </div>
       </div>
     </div>
 

@@ -119,13 +119,19 @@
             .then(res => {
               // console.log('新手任务', res);
               if (res.code === "0") {
+                let array = [];
+                let newArray = [];
                 this.PermanentList = res.data;
-                let array = []
                 for(let i=0;i<res.data.length;i++){
                   if(res.data[i].completed){
                     array.push(res.data[i])
                   }
+                  // if(res.data[i].missionEventName !== '活动—双十二邀请好友得现金'){
+                  //   newArray.push(res.data[i])
+                  // }
                 }
+                console.log('array',array);
+
                 if(array.length === res.count){
                   this.boxshowNew = false;
                 }else {
@@ -230,7 +236,7 @@
                 }
               })
 
-          }else if(title === '每日邀新人' || title === '每周邀新人'){
+          }else if(title === '每日邀新人' || title === '每周邀新人' || title === '活动—双十二邀请好友得现金'){
             // console.log('跳转到邀请新人页面，进行分享')
             this.showPosterPop('showInvitePoster');
           }
@@ -329,11 +335,12 @@
     position: relative;
   }
   .taskTitleItem{
-    width: 100%;
+    width: 80%;
     height: 48px;
     line-height: 48px;
     font-size: 30px;
     margin-top: 30px;
+    overflow: hidden;
   }
   .coinIcon{
     width: 40px;

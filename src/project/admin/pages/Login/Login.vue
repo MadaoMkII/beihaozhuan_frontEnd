@@ -43,6 +43,10 @@
             .then(res => {
               console.log('res',res);
               if(res.code === "0"){
+                if(res.data === '用户'){
+                  alert('当前用户没有操作权限')
+                  return;
+                }
                 localStorage.setItem('userName', this.tel_number);
                 this.getUserInfo();   //获取用户信息，存储用户权限
                 let redirect = decodeURIComponent(this.$route.query.redirect || '/');

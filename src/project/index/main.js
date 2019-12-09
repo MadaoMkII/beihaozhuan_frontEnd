@@ -95,7 +95,26 @@ router.beforeEach((to, from, next) => {
         path: '/'
       })
     }
-  }else {
+  }
+  else if(jumpTo === 'game'){ //从外部直接跳转到游戏页面
+    if (to.path === '/game') {
+      next()
+    } else {
+      next({
+        path: '/game'
+      })
+    }
+  }
+  else if(jumpTo === 'applyNew'){ //测试提现新页面
+    if (to.path === '/applyNew') {
+      next()
+    } else {
+      next({
+        path: '/applyNew'
+      })
+    }
+  }
+  else {
     if (to.matched.some(record => record.meta.authLogin)) {  // 判断该路由是否需要登录权限
       MUtil.request('/user/isLogin', {}, 'get')
         .then(res => {

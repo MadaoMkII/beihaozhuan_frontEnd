@@ -3,118 +3,82 @@
     <div class="backIcon" @click="prev()"></div>
     <div class="title">玩法引导</div>
     <div class="introduceCon">
-      <div class="introduceTitle">如何加入“贝好赚”</div>
       <div class="introduceItem">
-        <span class="boldIntroduce">“贝好赚”平台</span>以H5网站的形式为大家提供服务，区别于其他种类任务APP，不需要下载，只需轻松动点击链接即可访问。亲们记得关注贝好赚的微信公众号，就可以随时随地访问任务平台啦！
-      </div>
-      <div class="introduceItem">
-        打开网页之后，首先，您需要注册一个账号，按照提示填入几项简单信息，点击<span class="boldIntroduce">“注册并登录”</span>即可：
+        首先，还没有账号的小伙伴，需要先注册一个账号（也可选择使用微信直接登录，再绑定手机号码）。
       </div>
       <div class="imgCon">
-        <img src="../../assets/introduce/1.png" alt="">
+        <img src="../../assets/introduce/1.jpg" alt="">
       </div>
       <div class="introduceItem">
-        注册账号之后，以后再进入平台，就可以直接凭账号密码登录啦：
+        注册好的小伙伴，登录后即可看到首页界面啦：
       </div>
       <div class="imgCon">
-        <img src="../../assets/introduce/2.png" alt="">
+        <img src="../../assets/introduce/2.jpg" alt="">
       </div>
       <div class="introduceItem">
-        当然您也可以直接选择下方的微信直接登录，免去设置密码、头像、昵称等步骤，但为了您的金币财产安全，平台还是需要您绑定一下手机号码的。
-      </div>
-      <div class="introduceItem">
-        成功登录后，您将看到贝好赚的首页界面，展示当天的热门内容与任务：
+        点击页面下方第二项：<span class="tips">“任务”</span>进入任务大厅：
       </div>
       <div class="imgCon">
-        <img src="../../assets/introduce/3.png" alt="">
+        <img src="../../assets/introduce/3.jpg" alt="">
       </div>
       <div class="introduceItem">
-        点击右下角<span class="boldIntroduce">“我的”</span>，可以完善个人信息。
-      </div>
-      <div class="introduceTitle">如何赚取金币</div>
-      <div class="introduceItem">
-        <span class="boldIntroduce">划！重！点！</span>干货来啦！登录“贝好赚”平台之后，要如何赚取金币呢，首先，您需要点击页面下方第二项：<span class="boldIntroduce">“任务”</span>进入任务大厅：
+        首先点击<span class="tips">“日常任务”</span>，完成简单粗暴、金币丰厚的新手任务：
+        几个简单的小任务，完善个人信息就送1000金币，体验一下看广告等赚金币的玩法，看完第一条广告就送200金币，做完任务后记得要点“交任务”哦，新手任务轻松搞定！
       </div>
       <div class="imgCon">
-        <img src="../../assets/introduce/4.png" alt="">
+        <img src="../../assets/introduce/4.jpg" alt="">
       </div>
       <div class="introduceItem">
-        贝好赚的任务主要分为三种：
-      </div>
-      <div class="introduceItem">
-        <span class="boldIntroduce">新手任务</span>
-      </div>
-      <div class="introduceItem">
-        新手任务通常是一些非常简单的小任务，比如完善个人信息，看一个广告，完成一次提现等等，主要目的是为了帮您熟悉平台，一次完成之后，以后将不再出现。
-      </div>
-      <div class="introduceItem">
-        <span class="boldIntroduce">日常任务</span>
-      </div>
-      <div class="introduceItem">
-        日常任务每天都可以完成一次，通常是看广告、看视频、签到等任务，操作简单，容易完成，大部分的金币都是通过日常任务获得的，只要投入耐心，持之以恒，收获绝对稳稳的！
-      </div>
-      <div class="introduceItem">
-        <span class="boldIntroduce">进阶任务</span>
-      </div>
-      <div class="introduceItem">
-        进阶任务是更高一级别的任务，在难度上会相应有所提高，<span class="boldIntroduce">当然收益也会更高，想与其他人拉开差距，就要多花一些精力和时间。大部分的进阶任务是每周更新一次，您可以集中在一天完成，也可以分散到一周的几天内，自由安排~！</span>
+        完成新手任务后，按照难易程度，可以继续完成收益稳定的<span class="tips">每日任务</span>，每日任务顾名思义，每天都可以完成一次，闲暇时间动动手指，快乐地挣点小钱。
       </div>
       <div class="imgCon">
-        <img src="../../assets/introduce/5.png" alt="">
+        <img src="../../assets/introduce/7.jpg" alt="">
       </div>
       <div class="introduceItem">
-        接了任务之后，可以在我的任务记录中看到所有任务，查看完成进度。
+        每日的收益与你的坚持息息相关，只要投入耐心，就会有收获！只要你够活跃，就能获得一份不错的收入！
       </div>
-      <div class="introduceTitle">如何消费贝金币</div>
       <div class="introduceItem">
-        <span class="boldIntroduce">“贝好赚”平台</span>中的金币，有两大种消费方式，其中最吸引人的就是可以提现！是的，它真的可以直接提现至微信：
+        对于有时间、有精力、对收益有一定追求的朋友，一定不能错过任务大厅中的<span class="tips">进阶任务</span>！进阶任务难度比日常任务要高，需要付出的时间精力也相对会多一点点，当然啦，所能获得的金币也要比简单任务多一些，每周把进阶任务完成，才算是圆满啦~
+      </div>
+      <div class="introduceItem">
+        有了网薪怎么能不知道查呢？让小编来教教你吧——
       </div>
       <div class="imgCon">
-        <img src="../../assets/introduce/6.png" alt="">
+        <img src="../../assets/introduce/8.jpg" alt="">
       </div>
       <div class="introduceItem">
-        嘘寒问暖，不如打笔巨款，没错，我们就是这么实在~~
-      </div>
-      <div class="introduceItem">
-        当然除了直接提现以外，您还可以选择另一种更有意义的消费方式——兑换平台中的各种保险产品，贝好赚<span class="boldIntroduce">商城</span>中提供多个险种供您选择：
-      </div>
-      <div class="imgCon">
-        <img src="../../assets/introduce/7.png" alt="">
-      </div>
-      <div class="introduceItem">
-        当今社会，没有一份保险，无异于是裸奔，而在未来还是没有保险，那只能泪奔。
-      </div>
-      <div class="introduceItem">
-        成年人的生活里，没有容易二字。对爸妈来说，最大保障是你；对孩子来说，最大保障来自你，对家庭来说，家庭顶梁柱就是家庭的保障。
-      </div>
-      <div class="imgCon">
-        <img src="../../assets/introduce/8.png" alt="">
-      </div>
-      <div class="introduceItem">
-        然而意外的发生，总是那么的突然和不可预测，我们每天都会看到各种各样的意外，发生在别人身上，对我们来说那是故事；但是假如发生在了自己身上，那就是事故！转移人生中不可知的风险，最方便、最便宜的方法就是配置保险，为你家庭加一把锁，防病、防意外。
+        点击页面下方“<span class="tips">我的</span>”，那就是你的  {个人中心}  入口。右上方有账户明细，可以看到你的网薪数目哦。
       </div>
       <div class="imgCon">
         <img src="../../assets/introduce/9.png" alt="">
       </div>
       <div class="introduceItem">
-        用金币换来的保险，完全不心疼，成就感满满！
+        点击 “<span class="tips">全部</span>”更能看到详细获得数目，积累到一定数量的金币后，将有现金红包和丰富的奖品等着你！
       </div>
-      <div class="introduceItem tips">
-        所有图片中数字均为虚拟测试数据
+      <div class="imgCon">
+        <img src="../../assets/introduce/10.png" alt="">
       </div>
-      <div class="introduceItem tips">
-        不做为实际收益参考
+      <div class="introduceItem">
+        最后点击页面下方的“<span class="tips">商城</span>”，这将是大家最爱的页面啦！进入商城，可以选择金币的兑换方式，我们将陆续上线各种可兑换的商品和服务，比如一种有意义的商品——保险。
       </div>
-
-
-
-
-
-
-
-
-
-
+      <div class="imgCon">
+        <img src="../../assets/introduce/11.png" alt="">
+      </div>
+      <div class="introduceItem">
+        很多人觉得自己还年轻，身体很健康，不需要保险。可是，谁能保证自己一辈子不生病呢？现在没病，不能代表以后不会生病。如果我们生病了，当下没有治疗的方法，那是老天爷和医生的事情；但如果因为没钱而导致我们不得不放弃治疗，那将是我们一辈子的遗憾。
+      </div>
+      <div class="introduceItem">
+        当你在身体健康的时候拒绝保险，等到你生病了保险也会拒绝你，所以，上保险也要提前规划，未雨绸缪！
+      </div>
+      <div class="imgCon">
+        <img src="../../assets/introduce/12.png" alt="">
+      </div>
+      <div class="introduceItem">
+        用金币来换取保险，不用心疼现金，也不会给家庭开销造成任何负担，当你通过努力为自己、为家人都准备上了一份合适的保险的时候，也许你会发现，自己日夜为之奋斗的目标，似乎已经完成了一半！
+      </div>
+      <div class="introduceItem">
+        微信提现目前也正在与官方洽谈中，不日即将推出，满足注册时长和提现额度的要求后，亲们就可以把金币换成现金领出来了，天凉啦，喝再多的热水，也比不上一个实实在在的红包更暖心！
+      </div>
     </div>
   </div>
 </template>

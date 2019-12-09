@@ -25,7 +25,7 @@
     // 判断路由
     mounted() {
       let path = this.$route.path;
-      if(path === "/" || path === "/task" || path === "/shop" || path === "/mine") {
+      if(path === "/" || path === "/task" || path === "/shop" || path === "/mine" || path === '/game') {
         this.tabs = true;
       } else {
         this.tabs = false;
@@ -34,7 +34,7 @@
     watch: {
       '$route'(to, from) {
         let path = this.$route.path;
-        if(path === "/" || path === "/task" || path === "/shop" || path === "/mine") {
+        if(path === "/" || path === "/task" || path === "/shop" || path === "/mine" || path === '/game') {
           this.tabs = true;
         } else {
           this.tabs = false;

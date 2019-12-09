@@ -3,60 +3,59 @@
     <div class="backIcon" @click="prev()"></div>
     <div class="title">提现记录</div>
     <div class="recordListCon">
-      <div class="footerTips">暂无数据</div>
-<!--      <div class="recordItem">-->
-<!--        <div class="topItem">-->
-<!--          <div class="bigWechat"></div>-->
-<!--          <div class="center">-->
-<!--            <div class="source">提现至微信</div>-->
-<!--            <div class="status">提现成功</div>-->
-<!--          </div>-->
-<!--          <div class="money">-->
-<!--            ¥444444.44-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="footerItem">-->
-<!--          <div class="date">2019-07-25 12:00:46</div>-->
-<!--          <div class="coinCount">-444444金币</div>-->
-<!--          <div class="coinIcon"></div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <div class="recordItem">-->
-<!--        <div class="topItem">-->
-<!--          <div class="bigWechat"></div>-->
-<!--          <div class="center">-->
-<!--            <div class="source">提现至微信</div>-->
-<!--            <div class="status">提现成功</div>-->
-<!--          </div>-->
-<!--          <div class="money">-->
-<!--            ¥444444.44-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="footerItem">-->
-<!--          <div class="date">2019-07-25 12:00:46</div>-->
-<!--          <div class="coinCount">-444444金币</div>-->
-<!--          <div class="coinIcon"></div>-->
-<!--        </div>-->
-<!--      </div>-->
-
-
-
-
+      <div class="footerTips" v-if="showNoData">暂无数据</div>
+      <div class="recordItem" v-for="item in data">
+        <div class="topItem">
+          <div class="bigWechat"></div>
+          <div class="center">
+            <div class="source">提现至微信</div>
+            <div class="status">{{item.return_msg === '' ? '提现成功' : item.return_msg}}</div>
+          </div>
+          <div class="money">
+            ¥{{item.amount / 10000}}
+          </div>
+        </div>
+        <div class="footerItem">
+          <div class="date">{{item.created_at}}</div>
+          <div class="coinCount">-{{item.amount}}金币</div>
+          <div class="coinIcon"></div>
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
   </div>
-
 </template>
 
 <script>
+  import MINE from 'index/service/mine-service.js'
     export default {
-        name: "Record"
+      name: "Record",
+      data(){
+        return{
+          showNoData:false,
+          data:[]
+        }
+      },
+      created(){
+        this.getList();
+      },
+      methods:{
+        getList(){
+          let data = {
+            'unit': 1000,
+            'page':1
+          };
+          MINE.getWithDrewByUser(data)
+            .then(res => {
+              if(res.code === "0"){
+                if(res.count > 0){
+                  this.data = res.data;
+                }else {
+                  this.showNoData = true;
+                }
+              }
+            })
+        }
+      }
     }
 </script>
 

@@ -1,11 +1,13 @@
 <template>
   <div class="mineCon">
     <div class="mineTopCon">
+<!--      <div class="minTopConNew">-->
       <div class="mineInfo">
         <div class="headPic" :style="{backgroundImage:'url('+avatar+')'}"></div>
         <div class="mineName" v-if="nickName !=''">{{nickName}}</div>
         <div class="mineName" v-else @click="goLogin()">点击登录</div>
       </div>
+<!--        原余额，提现显示区域   开始-->
       <div class="coinCon">
         <div class="coinItem totalCoin"  @click="goPage('Record','')">
           <div class="count" v-if="totalCoin !=''">{{totalCoin}}金币</div>
@@ -24,6 +26,26 @@
           </div>
         </div>
       </div>
+        <!--        原余额，提现显示区域   结束-->
+
+<!--        修改后的当前余额显示区域-->
+
+
+<!--        <div class="coinCon">-->
+<!--          <div class="balanceCon">-->
+<!--            <div class="balanceTitle">当前余额(金币)</div>-->
+<!--            <div class="balanceCount">-->
+<!--              <span class="balanceTotal" v-if="Bcoins !=''">{{Bcoins}}金币</span>-->
+<!--              <span class="balanceTotal" v-else>— —</span>-->
+<!--              <span class="balanceRmb"  v-if="Bcoins !=''">约¥{{Bcoins/10000}}元</span>-->
+<!--              <span class="balanceRmb" v-else>— —</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="applyBtn" @click="gotoCashout()">立即提现</div>-->
+<!--        </div>-->
+
+
+
     </div>
 <!--      快捷按钮组区域-->
     <div class="btnGroups">
@@ -75,16 +97,13 @@
         <div class="listIcon"></div>
       </div>
       <div class="listItem" @click="showPosterPop()">
-<!--      <div class="listItem">-->
         <div class="listImg friend"></div>
         <div class="listText">邀请好友</div>
         <div class="listIcon"></div>
       </div>
       <div class="listItem phoneItem" >
         <div class="listText">客服电话</div>
-<!--        <div class="serviceNumberCon" v-for="item in serviceNumber" :key="item.index">-->
           <div class="serviceNumber"  v-for="item in serviceNumber" :key="item.index">{{item}}</div>
-<!--        </div>-->
       </div>
     </div>
 
@@ -222,6 +241,16 @@
             })
           }
         },
+        //跳转到新提现页面
+        gotoCashout(){
+          this.$router.push({
+            path: '/applyNew',
+            name:'ApplyNew',
+            query:{
+              'Bcoins':this.Bcoins
+            }
+          })
+        }
       }
     }
 </script>
@@ -239,10 +268,10 @@
     .bg-image("~index/assets/mine/mineBg");
     background-position: 0px -36px;
   }
-  .mineTopBg{
+  .minTopConNew{
     width: 100%;
     height: 170*2px;
-    .bg-image("~index/assets/mine/mineBg");
+    .bg-image("~index/assets/mine/mineBgNew");
     background-position: 0px -36px;
   }
   .mineInfo{
@@ -423,4 +452,43 @@
     font-size: 13*2px;
     text-align: right;
   }
+  .balanceCon{
+    width: 250*2px;
+    height: 75*2px;
+    float: left;
+  }
+  .applyBtn{
+    float: right;
+    width: 76*2px;
+    height: 28*2px;
+    border-radius: 28px;
+    background:linear-gradient(270deg,rgba(237,207,165,1) 0%,rgba(221,182,127,1) 100%);
+    box-shadow:0px 0px 4px 0px rgba(0,0,0,0.2);
+    font-size: 28px;
+    line-height: 28*2px;
+    text-align: center;
+    font-weight:600;
+    margin-right: 18px;
+    margin-top: 50px;
+  }
+  .balanceTitle{
+    height: 40px;
+    line-height: 40px;
+    opacity: .8;
+    margin: 25px 0 0 20px;
+  }
+  .balanceCount{
+    height: 32*2px;
+    line-height: 32*2px;
+    margin-left: 20px;
+  }
+  .balanceTotal{
+    font-size: 36px;
+    font-weight: bold;
+    color: #DDB67F;
+  }
+  .balanceRmb{
+    color: #DDB67F;
+  }
+
 </style>

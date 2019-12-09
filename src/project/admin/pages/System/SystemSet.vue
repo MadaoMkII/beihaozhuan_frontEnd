@@ -3,33 +3,33 @@
     <div class="centerTitle">
       系统设置
     </div>
-    <div class="systemLabel">
-      配置用户提现规则
-    </div>
-    <div class="formItem">
-      <div class="label">提现规则：</div>
-      <div class="input numberInput">
-        <el-checkbox v-model="checked">按照注册时间</el-checkbox>
-      </div>
-      <div class="label smLabel">注册时间：</div>
-      <div class="input numberInput">
-        <el-input-number v-model="num" controls-position="right" :min="0"></el-input-number>
-      </div>
-      <div class="numberText">天</div>
-      <div class="systemTips">(必须注册达到此设定时间方可进行余额提现)</div>
-    </div>
-    <div class="formItem">
-      <div class="label"></div>
-      <div class="input numberInput">
-        <el-checkbox v-model="checked">按照金币额度</el-checkbox>
-      </div>
-      <div class="label smLabel">金币额度：</div>
-      <div class="input numberInput">
-        <el-input-number v-model="num" controls-position="right" :min="0"></el-input-number>
-      </div>
-      <div class="numberText">金币</div>
-      <div class="systemTips">(金币达到设定额度方可进行提现)</div>
-    </div>
+<!--    <div class="systemLabel">-->
+<!--      配置用户提现规则-->
+<!--    </div>-->
+<!--    <div class="formItem">-->
+<!--      <div class="label">提现规则：</div>-->
+<!--      <div class="input numberInput">-->
+<!--        <el-checkbox v-model="checked">按照注册时间</el-checkbox>-->
+<!--      </div>-->
+<!--      <div class="label smLabel">注册时间：</div>-->
+<!--      <div class="input numberInput">-->
+<!--        <el-input-number v-model="num" controls-position="right" :min="0"></el-input-number>-->
+<!--      </div>-->
+<!--      <div class="numberText">天</div>-->
+<!--      <div class="systemTips">(必须注册达到此设定时间方可进行余额提现)</div>-->
+<!--    </div>-->
+<!--    <div class="formItem">-->
+<!--      <div class="label"></div>-->
+<!--      <div class="input numberInput">-->
+<!--        <el-checkbox v-model="checked">按照金币额度</el-checkbox>-->
+<!--      </div>-->
+<!--      <div class="label smLabel">金币额度：</div>-->
+<!--      <div class="input numberInput">-->
+<!--        <el-input-number v-model="num" controls-position="right" :min="0"></el-input-number>-->
+<!--      </div>-->
+<!--      <div class="numberText">金币</div>-->
+<!--      <div class="systemTips">(金币达到设定额度方可进行提现)</div>-->
+<!--    </div>-->
 <!--    <div class="systemLabel">-->
 <!--      配置邀新奖励-->
 <!--    </div>-->

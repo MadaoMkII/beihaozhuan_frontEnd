@@ -16,6 +16,22 @@ const mineInfo = {
   //我的团队
   getMyTeam(data){
     return MUtil.formRequestios('/user/getMyTeam',data)
+  },
+  //获取提现金额等信息
+  getWithDrewSetting(){
+    return MUtil.formRequestios('/setting/getWithDrewSetting',{},'get')
+  },
+  //获取微信昵称
+  getWechatNickName(){
+    return MUtil.formRequestios('/user/getWechatNickName',{},'get')
+  },
+  //提现
+  withdrew(data){
+    return MUtil.formRequestios('/wechat/withdrew',data)
+  },
+  //账户明细
+  getWithDrewByUser(data){
+    return MUtil.formRequestios('/wechat/getWithDrewByUser',data)
   }
 };
 

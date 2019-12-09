@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import REGISTER from '@/project/prepare/service/register-service.js'
+  import REGISTER from '@/project/prepare/service/gift-service.js'
   export default {
     name: 'Register',
     data () {

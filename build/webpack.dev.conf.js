@@ -28,7 +28,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         // { from: 'index', to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
         { from: /\/index/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
         { from: /\/admin/, to: path.posix.join(config.dev.assetsPublicPath, 'admin.html') },
-        // { from: /\/prepare/, to: path.posix.join(config.dev.assetsPublicPath, 'prepare.html') },
+        { from: /\/gift/, to: path.posix.join(config.dev.assetsPublicPath, 'gift.html') },
         // { from: /\/missionAward/, to: path.posix.join(config.dev.assetsPublicPath, 'missionAward.html') },
         // { from: /\/missionSignIn/, to: path.posix.join(config.dev.assetsPublicPath, 'missionSignIn.html') },
       ],
@@ -71,13 +71,13 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       inject: true,
       chunks: ['admin']
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: 'prepare.html',
-    //   template: './src/project/prepare/prepare.html',
-    //   favicon:'./static/favicon.ico',
-    //   inject: true,
-    //   chunks: ['prepare']
-    // }),
+    new HtmlWebpackPlugin({
+      filename: 'gift.html',
+      template: './src/project/gift/gift.html',
+      favicon:'./static/favicon.ico',
+      inject: true,
+      chunks: ['gift']
+    }),
     // new HtmlWebpackPlugin({
     //   filename: 'missionAward.html',
     //   template: './src/project/missionAward/missionAward.html',

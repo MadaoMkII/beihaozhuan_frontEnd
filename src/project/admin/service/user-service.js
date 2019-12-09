@@ -17,7 +17,18 @@ const user = {
   findOrderByUser(data){
     return MUtil.request('/order/findOrderByUser',data)
   },
-  //
+  //用户信息中的提现明细
+  getWithDrewByUser(data){
+    return MUtil.request('/wechat/getWithDrewByAdmin',data)
+  },
+  //获取活动列表
+  getProofs(data){
+    return MUtil.request('/promotion/getProofs',data)
+  },
+  //审批游戏凭证
+  verifyProof(data){
+    return MUtil.request('/promotion/verifyProof',data)
+  },
 };
 
 

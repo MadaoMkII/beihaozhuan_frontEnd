@@ -12,9 +12,11 @@ import AddGoods from "admin/pages/Goods/AddGoods";
 import Login from "admin/pages/Login/Login";
 import OrderDetail from "admin/pages/Goods/OrderDetail";
 import UserMg from "admin/pages/User/UserMg";
+import ActivityMg from "admin/pages/User/ActivityMg";
 import UserInfo from "admin/pages/User/UserInfo";
 import UserOrderList from "admin/pages/User/UserOrderList";
 import Account from "admin/pages/User/Account";
+import WithDrew from "admin/pages/User/WithDrew";
 import Invite from "admin/pages/User/Invite";
 import AdMg from "admin/pages/Operate/AdMg";
 import TaskMg from "admin/pages/Operate/TaskMg";
@@ -148,6 +150,12 @@ export default new Router({
                       component: Invite,
                       name: 'Invite',
                       meta: { title: '邀请列表', noCache: true,showUserInfo : true,showThirdTab : true,authLogin:true}
+                    },
+                    {
+                      path: '/user/userMg/userInfo/withDrew',
+                      component: WithDrew,
+                      name: 'WithDrew',
+                      meta: { title: '提现列表', noCache: true,showUserInfo : true,showThirdTab : true,authLogin:true}
                     }
                   ]
                 }
@@ -339,6 +347,12 @@ export default new Router({
                 }
 
               ]
+            },
+            {
+              path: '/operate/activityMg',
+              component: ActivityMg,
+              name: 'ActivityMg',
+              meta: {title: '活动管理', noCache: true, authLogin: true}
             }
           ]
         },

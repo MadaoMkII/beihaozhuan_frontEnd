@@ -22,7 +22,7 @@
           <div class="accountTitle">{{item.category}}</div>
         </div>
         <div class="coinCon">
-          <div class="coinCount" v-if="item.income === '消费'">-{{item.amount}}金币</div>
+          <div class="coinCount" v-if="item.income === '消费'">{{item.amount}}金币</div>
           <div class="coinCount" v-else>+{{item.amount}}金币</div>
           <div class="coin"></div>
           <div class="time">{{item.createTime}}</div>
@@ -85,11 +85,11 @@
             {
               type:'完成任务',
               url:require('../../assets/mine/account/6.png')
-            }
-            // {
-            //   type:'每日任务',
-            //   url:require('../../assets/mine/account/7.png')
-            // },
+            },
+            {
+              type:'活动奖励',
+              url:require('../../assets/mine/account/6.png')
+            },
             // {
             //   type:'进阶任务',
             //   url:require('../../assets/mine/account/8.png')

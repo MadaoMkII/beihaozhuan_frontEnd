@@ -84,18 +84,18 @@ const webpackConfig = merge(baseWebpackConfig, {
       chunksSortMode: 'dependency',
       chunks: ['manifest','vendor','admin']
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: config.build.prepare,
-    //   template: './src/project/prepare/prepare.html',
-    //   inject: true,
-    //   minify: {
-    //     removeComments: true,
-    //     collapseWhitespace: true,
-    //     removeAttributeQuotes: true
-    //   },
-    //   chunksSortMode: 'dependency',
-    //   chunks: ['manifest','vendor','prepare']
-    // }),
+    new HtmlWebpackPlugin({
+      filename: config.build.gift,
+      template: './src/project/gift/gift.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunksSortMode: 'dependency',
+      chunks: ['manifest','vendor','gift']
+    }),
     // new HtmlWebpackPlugin({
     //   filename: config.build.missionAward,
     //   template: './src/project/missionAward/missionAward.html',

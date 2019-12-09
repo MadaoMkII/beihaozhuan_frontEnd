@@ -8,7 +8,7 @@
         <img id="bgImg" class="imgCon" src="../../assets/poster/invitePoster.png" alt="">
         <div class="posterCon">
           <div class="posterItem">您的朋友 {{phone}} 邀请您</div>
-          <div class="posterItem">贝好赚送您 5 元现金已到账</div>
+          <div class="posterItem">贝好赚送您现金红包已到账</div>
         </div>
         <!-- 二维码 -->
         <div class="qrcode"><div id="qrcodeImg"></div></div>

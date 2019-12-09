@@ -13,6 +13,7 @@ import ShopDetail     from 'index/pages/Shop/ShopDetail.vue'
 import InsureInfo     from 'index/pages/Shop/InsureInfo.vue'
 import Success        from 'index/pages/Shop/Success.vue'
 import Apply          from 'index/pages/Mine/Apply.vue'
+import ApplyNew       from 'index/pages/Mine/ApplyNew.vue'
 import Record         from 'index/pages/Mine/Record.vue'
 import MyInfo         from 'index/pages/Mine/MyInfo.vue'
 import Address        from 'index/pages/Mine/Address.vue'
@@ -29,6 +30,7 @@ import PlayIntroduce  from 'index/pages/Home/PlayIntroduce.vue'
 import Ad             from 'index/pages/Ad/Ad.vue'
 import Video          from 'index/pages/Ad/Video.vue'
 import Infos          from 'index/pages/Mine/Infos.vue'
+import Game           from 'index/pages/Game/Game.vue'
 
 
 Vue.use(Router)
@@ -123,6 +125,13 @@ export default new Router({
       name: 'Apply',
       meta: {authLogin:true},
       component: Apply
+    },
+    //申请提现(新页面)
+    {
+      path: '/applyNew',
+      name: 'ApplyNew',
+      meta: {authLogin:true},
+      component: ApplyNew
     },
     //提现记录
     {
@@ -223,6 +232,12 @@ export default new Router({
       path: '/infos',
       name: 'Infos',
       component: Infos
+    },
+    //游戏
+    {
+      path: '/game',
+      name: 'Game',
+      component: Game
     }
   ]
 })

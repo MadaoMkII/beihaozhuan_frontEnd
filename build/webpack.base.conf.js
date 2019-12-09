@@ -15,7 +15,7 @@ module.exports = {
   entry: {
     index: ['babel-polyfill', './src/project/index/main.js'],
     admin: ['babel-polyfill', './src/project/admin/main.js'],
-    // prepare: ['babel-polyfill', './src/project/prepare/main.js'],
+    gift: ['babel-polyfill', './src/project/gift/main.js'],
     // missionAward: ['babel-polyfill', './src/project/missionAward/main.js'],
     // missionSignIn: ['babel-polyfill', './src/project/missionSignIn/main.js'],
   },
@@ -33,7 +33,7 @@ module.exports = {
       '@': resolve('src'),
       'index': resolve('src/project/index'),
       'admin': resolve('src/project/admin'),
-      // 'missionSignIn': resolve('src/project/missionSignIn')
+      'gift': resolve('src/project/gift')
     }
   },
   module: {

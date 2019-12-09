@@ -3,8 +3,18 @@
     <div v-if="showUserInfo">
       <UserInfo></UserInfo>
     </div>
-    <div v-else>
-      <UserMg></UserMg>
+    <div class="subTabCon" v-if="!showUserInfo">
+      <div class="subTab">
+        <div class="subTabItem">
+          <router-link :to="{name:'UserMg'}">
+            <div class="subTabText">用户管理</div>
+            <div class="subTabItemBorder"></div>
+          </router-link>
+        </div>
+      </div>
+    </div>
+    <div class="centerCon" v-if="!showUserInfo">
+      <router-view></router-view>
     </div>
   </div>
 </template>

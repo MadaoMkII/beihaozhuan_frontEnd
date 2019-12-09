@@ -12,6 +12,11 @@
         <div class="tabIcon active taskIconActive"></div>
         <div class="tabText">任务</div>
       </router-link>
+      <router-link :to="{name:'Game'}" tag="li">
+        <div class="tabIcon normal gameIcon"></div>
+        <div class="tabIcon active gameIconActive"></div>
+        <div class="tabText">游戏</div>
+      </router-link>
       <router-link :to="{name:'Shop'}" tag="li">
         <div class="tabIcon normal shopIcon"></div>
         <div class="tabIcon active shopIconActive"></div>
@@ -86,6 +91,9 @@
   .mineIcon{
     .bg-image("~index/assets/home/mineNormal");
   }
+  .gameIcon{
+    .bg-image("~index/assets/home/gameNormal");
+  }
   .active{
     display: none;
   }
@@ -109,6 +117,9 @@
   }
   .mineIconActive{
     .bg-image("~index/assets/home/mineActive");
+  }
+  .gameIconActive{
+    .bg-image("~index/assets/home/gameActive");
   }
 
 

@@ -40,7 +40,7 @@ module.exports = {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
     admin: path.resolve(__dirname, '../dist/admin.html'),
-    // prepare: path.resolve(__dirname, '../dist/prepare.html'),
+    gift: path.resolve(__dirname, '../dist/gift.html'),
     // missionSignIn: path.resolve(__dirname, '../dist/missionSignIn.html'),
     // missionAward: path.resolve(__dirname, '../dist/missionAward.html'),
 
