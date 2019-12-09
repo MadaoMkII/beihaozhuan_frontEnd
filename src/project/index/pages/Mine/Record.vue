@@ -12,12 +12,12 @@
             <div class="status">{{item.return_msg === '' ? '提现成功' : item.return_msg}}</div>
           </div>
           <div class="money">
-            ¥{{item.amount / 10000}}
+            ¥{{item.amount / 100}}
           </div>
         </div>
         <div class="footerItem">
           <div class="date">{{item.created_at}}</div>
-          <div class="coinCount">-{{item.amount}}金币</div>
+          <div class="coinCount">-{{item.amount * 100}}金币</div>
           <div class="coinIcon"></div>
         </div>
       </div>

@@ -184,9 +184,6 @@
             .then(res => {
               if(res.code == '0'){
                 this.$toastMessage({message: '提现成功', messageType: 'success'});
-                this.$router.push({
-                  name:'Mine'
-                })
               }else if(res.code == 400){
                 this.$toastMessage({message: res.data, messageType: 'text'});
               }
@@ -234,7 +231,7 @@
   }
   .title{
     width: 100%;
-    height: 48px;
+    height: 70px;
     margin:auto;
     padding-top: 24px;
     font-size: 17*2px;
@@ -255,6 +252,7 @@
     height: 28*2px;
     line-height: 28*2px;
     padding: 24px 24px 0 24px;
+    overflow: hidden;
   }
   .balanceTopLeft{
     float: left;
@@ -281,7 +279,7 @@
     height: 80px;
     line-height: 80px;
     color: #DDB67F;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: bold;
     margin-left: 24px;
   }
@@ -349,7 +347,7 @@
     border-radius:200px 200px 0px 200px;
     position: absolute;
     top: -24px;
-    padding: 5px;
+    /*padding: 5px;*/
     left: 0;
   }
   .tipsCon{
@@ -378,7 +376,7 @@
     border-style:dashed dashed solid dashed;
     border-color:transparent transparent #3D3F4BFF transparent;
     position: absolute;
-    top: -30px;
+    top: -29px;
     left: 90px;
   }
   .bindWx{
@@ -446,7 +444,7 @@
     height: 255*2px;
     padding: 24px;
     color: #333;
-    opacity: .3;
+    opacity: .5;
     font-size: 26px;
     overflow-y: auto;
   }
@@ -455,7 +453,7 @@
     line-height: 48*2px;
     text-align: center;
     margin: auto;
-    font-size: 36px;
+    font-size: 28px;
     color: #333;
     border-top: 2px solid #F4F4F4;
   }

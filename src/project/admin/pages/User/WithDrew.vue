@@ -68,7 +68,7 @@
         return val;
       },
       formatterAmount(row, column, cellValue){
-        let val = cellValue / 10000 +'元';
+        let val = cellValue / 100 +'元';
         return val;
       },
       //格式化时间
