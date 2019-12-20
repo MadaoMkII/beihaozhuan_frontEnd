@@ -24,14 +24,15 @@
       <div class="tipCon" v-else-if="type === '邀请攻略'">
         1、点击“我要去邀请”获得邀请海报<br/>
         2、保存海报，发送给朋友、微信群、朋友圈等<br/>
-        3、朋友通过海报注册平台并登陆，双方即可获得相应奖励<br/>
+        3、朋友通过海报注册平台，并且完成游戏下载，双方即可获得相应奖励<br/>
         4、审核通过后，邀请人可获得3000贝金币，约0.3元<br/>
-        5、红包名额有限，送完即止。活动结束后，贝好赚平台将开放提现通道<br/>
+        5、登录贝好赚，点击任务-日常任务-活动—双十二邀请好友得现金-交任务，领取奖金<br/>
         6、贝好赚永久地址：https://www.beihaozhuan.com/<br/>
-        7、关注我，领钱不迷路<br/>
-        8、每个手机号仅可完成一次本活动<br/>
+        7、每个手机号仅可完成一次本活动<br/>
       </div>
-      <div class="qrcodeCon"></div>
+      <div class="qrcodeCon">
+        <img class="imgCon" :src="qrcode" >
+      </div>
     </div>
   </div>
 </template>
@@ -39,13 +40,13 @@
 <script>
     export default {
       name: "GiftTip",
-      props: {
-        type: String    // 接受值并定义传递值类型
-      },
       data(){
         return{
-
+          qrcode:require('../../assets/qrcode.png')
         }
+      },
+      props: {
+        type: String    // 接受值并定义传递值类型
       },
       methods:{
 
@@ -94,7 +95,7 @@
   .tipCon{
     width: 290*2px;
     left: 52*2px;
-    top: 202*2px;
+    top: 199*2px;
     position: absolute;
     color: #6B3808;
     line-height: 45px;
@@ -107,6 +108,9 @@
     bottom: 90px;
     left: 50%;
     margin-left: -132px;
-    .bg-image("~index/assets/qrcode");
+  }
+  .imgCon{
+    width: 100%;
+    height: 100%;
   }
 </style>

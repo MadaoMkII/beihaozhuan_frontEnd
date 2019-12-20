@@ -40,26 +40,18 @@
 
         <el-table-column slot="table_oper" align="center" label="登录截图" width="100" :resizable="false" fixed="right">
           <template slot-scope="scope">
-            <div class="tableImgCon" @click="previewPic(scope.row.loginPicUrl)">
-              <img class="img" :src="scope.row.loginPicUrl" alt="登录截图">
+            <div class="tableImgCon" @click="previewPic(scope.row.loginPicUrl ? scope.row.loginPicUrl :'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/doubleDec/20200000013920144735683904067_s.jpg')">
+              <img class="img" :src="scope.row.loginPicUrl ? scope.row.loginPicUrl :'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/doubleDec/20200000013920144735683904067_s.jpg'" alt="登录截图">
             </div>
           </template>
         </el-table-column>
 
-        <el-table-column slot="table_oper" align="center" label="注册截图" width="100" :resizable="false" fixed="right">
+        <el-table-column slot="table_oper" align="center" label="是否下载" width="100" :resizable="false" fixed="right">
           <template slot-scope="scope">
-            <div class="tableImgCon" @click="previewPic(scope.row.registerPicUrl)">
-              <img class="img" :src="scope.row.registerPicUrl" alt="注册截图">
-            </div>
+            <div>{{scope.row.hasDownload === true ? '是' : '否'}}</div>
           </template>
         </el-table-column>
-        <el-table-column slot="table_oper" align="center" label="绑定截图" width="100" :resizable="false" fixed="right">
-          <template slot-scope="scope">
-            <div class="tableImgCon" @click="previewPic(scope.row.bindingPicUrl)">
-              <img class="img" :src="scope.row.bindingPicUrl" alt="绑定截图">
-            </div>
-          </template>
-        </el-table-column>
+
         <el-table-column slot="table_oper" align="center" label="提交时间" width="180" :resizable="false" fixed="right">
           <template slot-scope="scope">
             <span>{{scope.row.created_at}}</span>

@@ -7,6 +7,13 @@ const gift = {
   },
   checkProofsStatus(){
     return MUtil.request('/promotion/checkProofsStatus',{},'get')
+  },
+  //获取邀请链接
+  inviteLink(){
+    return MUtil.formRequestios('/promotion/getDoubleDecInviteLink',{},'get')
+  },
+  setDownload(){
+    return MUtil.formRequestios('/promotion/setDownload',{},'get')
   }
 
 };

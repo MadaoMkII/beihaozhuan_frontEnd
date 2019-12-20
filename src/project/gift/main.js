@@ -15,6 +15,14 @@ import { Picker } from 'vant';
 import Calendar from 'vue-mobile-calendar'
 import MUtil from '@/utils/mm.js'
 import { Dialog } from 'vant';
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+
+let options = {
+  fullscreenEl: false
+};
+Vue.use(preview, options)
+Vue.use(preview)
 
 // 全局注册
 Vue.use(Dialog);
@@ -35,7 +43,25 @@ Vue.config.productionTip = false
 //提示框公共方法
 // Vue.prototype.$tips=Tips;
 
+router.beforeEach((to, from, next) => {
 
+  let jumpTo = to.query.jumpTo;
+  console.log('jumpTo',jumpTo)
+  console.log('to',to)
+
+  if(jumpTo === 'gameDetail'){
+    if (to.path === '/gameDetail') {
+      next()
+    } else {
+      next({
+        path: '/gameDetail'
+      })
+    }
+  }
+  else {
+      next();
+  }
+});
 
 
 

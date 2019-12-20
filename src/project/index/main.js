@@ -55,6 +55,8 @@ router.beforeEach((to, from, next) => {
   let head = to.query.head;
   let nickName = to.query.nickName;
   let inviteCode = to.query.inviteCode;
+  let source = to.query.source;
+  let state = to.query.state;
   console.log('statusString',statusString)
   console.log('jumpTo',jumpTo)
   console.log('head',head)
@@ -71,7 +73,10 @@ router.beforeEach((to, from, next) => {
           'jumpTo':jumpTo,
           'head':head,
           'nickName':nickName,
-          'type':'bindPhone'
+          'type':'bindPhone',
+          'inviteCode':inviteCode,
+          'source':source,
+          'state':state
         }
       })
     }

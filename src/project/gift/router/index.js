@@ -4,6 +4,7 @@ import Gift           from 'gift/pages/Gift/Gift.vue'
 import GameDetail     from 'gift/pages/Gift/GameDetail.vue'
 import GiftTip        from 'gift/pages/Gift/GiftTip.vue'
 import PicUpload      from 'gift/pages/Gift/PicUpload.vue'
+import GiftPoster     from 'gift/pages/Gift/GiftPoster.vue'
 
 
 Vue.use(Router)
@@ -35,6 +36,12 @@ export default new Router({
       path: '/picUpload',
       name: 'PicUpload',
       component: PicUpload
+    },
+    //邀请海报
+    {
+      path: '/giftPoster',
+      name: 'GiftPoster',
+      component: GiftPoster
     }
   ]
 })

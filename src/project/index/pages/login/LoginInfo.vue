@@ -27,6 +27,15 @@
         {{info.submitBtn}}
       </div>
     </div>
+    <div class="mask" v-show="showPopBox"></div>
+    <div class="popBox"  v-show="showPopBox">
+      <div class="popTitle">说明</div>
+      <div class="popCon">
+        1.	恭喜您，完成一重礼任务，红包已经打入您的账户！<br>
+        2.	点击关闭弹窗，开启二重礼任务，完成游戏下载可获取第二个红包哦~<br>
+      </div>
+      <div class="popBtn"  @click="closePop()">关闭</div>
+    </div>
   </div>
 </template>
 
@@ -37,6 +46,7 @@
         name: "LoginInfo",
         data () {
           return {
+            showPopBox:false,
             info: {
               title: '',
               type: '',
@@ -140,6 +150,21 @@
           showSubmitBtn(){
             this.canClick = true
           },
+          //判断当前手机环境是安卓还是ios
+          IsIA(){
+            let u = navigator.userAgent, app = navigator.appVersion;
+            let isAndroid = u.indexOf('Android') > -1; //android终端或者uc浏览器
+            let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            if(isiOS){
+              window.open('https://www.beihaozhuan.com/gift','_self');
+            }else {
+              window.open('https://www.beihaozhuan.com/gift/?jumpTo=gameDetail','_self');
+            }
+          },
+          closePop(){
+            this.showPopBox = false;
+            this.IsIA();
+          },
           save(){
             let that = this;
             let type = this.info.type;
@@ -150,13 +175,18 @@
               let jumpTo =  this.$route.query.jumpTo;
               let head =  this.$route.query.head;
               let nickName =  this.$route.query.nickName;
+              let inviteCode = this.$route.query.inviteCode;
+              let source = this.$route.query.source;
+              let state = this.$route.query.state;
 
               if(statusString && statusString != '' && jumpTo && jumpTo != '' && head && head != '' && nickName && nickName != ''){
                 data.statusString = statusString;
                 // data.jumpTo = jumpTo;
                 data.head = head;
                 data.nickName = nickName;
+                data.inviteCode = inviteCode;
               }
+              data.source = source;
               data.tel_number = this.phone;
               data.smsVerifyCode = this.code;
 
@@ -165,10 +195,14 @@
                     // console.log('res',res);
                     if(res.code === '0'){
                       this.$toastMessage({message: '绑定成功', messageType: 'success'})
-                      this.$router.push({
-                        path: '/',
-                        name:'Home'
-                      })
+                      if(state === 'gift'){
+                        that.showPopBox = true;
+                      }else {
+                        that.$router.push({
+                          path: '/',
+                          name:'Home'
+                        })
+                      }
                     }
                   })
 
@@ -294,5 +328,56 @@
   }
   .canClickCode{
     opacity: 1;
+  }
+  .mask{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .4;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .popBox{
+    width: 294*2px;
+    height: 200*2px;
+    background: #fff;
+    border-radius: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 999;
+  }
+  .popTitle{
+    width: 161*2px;
+    height: 40px;
+    margin: 32px auto 0 auto;
+    color: #333333;
+    font-size: 28px;
+    line-height: 40px;
+    font-weight:600;
+    text-align: center;
+  }
+  .popCon{
+    height: 92*2px;
+    padding: 24px 50px;
+    color: #333;
+    opacity: .5;
+    font-size: 26px;
+    line-height: 50px;
+    overflow-y: auto;
+  }
+  .popBtn{
+    height: 48*2px;
+    line-height: 48*2px;
+    text-align: center;
+    margin: auto;
+    font-size: 28px;
+    color: #333;
+    border-top: 2px solid #F4F4F4;
   }
 </style>

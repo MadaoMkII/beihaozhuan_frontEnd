@@ -3,20 +3,16 @@
       <div class="gameDetailBg"></div>
       <div class="flowCon">
         <div class="tips fistTips">
-          1、点击“立刻下载”安装捕鱼欢乐颂，登录注册账号并试玩，<span style="color: #D21212">限定安卓操作系统手机可下载试玩</span>
+          1、点击“下载游戏”安装捕鱼欢乐颂，登录注册账号并试玩，<span style="color: #D21212">限定安卓操作系统手机可下载试玩(小米手机除外)</span>
         </div>
         <div class="tips">
-          2、上传登录、注册、认证三张截图，例图如下
+          2、下载游戏后，请运行游戏，参照下图示例，进行截图保存
         </div>
         <div class="bannerCon">
-          <swiper class="swiper" :options="swiperOption" ref="mySwiper">
-            <swiper-slide v-for="item in imgList" >
-              <img class="imgCon" v-bind:src="item.imgUrl">
-            </swiper-slide>
-          </swiper>
+          <img class="imgCon" :src="imgUrl" preview="0">
         </div>
         <div class="tips">
-          3、审核后贝好赚账户获得5000贝金币，约0.5元
+          3、点击我要领红包，上传截图，审核后贝好赚账户获得5000贝金币，约0.5元
         </div>
         <div class="tips">
           4、登录贝好赚账号，每个设备只能完成一次试玩任务
@@ -25,19 +21,34 @@
           5、红包名额有限，送完即止。活动结束后，贝好赚平台将开放提现通道
         </div>
         <div class="tips">
-          6、贝好赚永久地址：https://www.beihaozhuan.com/
+          6、贝好赚永久地址:https://www.beihaozhuan.com/
         </div>
         <div class="tips">
           7、关注我，领钱不迷路
         </div>
-        <div class="qrcodeCon"></div>
+        <div class="qrcodeCon">
+          <img class="imgCon" :src="qrcode" >
+        </div>
       </div>
       <div class="btnGroup">
-        <a :href="'http://qpm.boxiangyx.com/mobile/mp/extension.html?agentId=2000551'"><div class="downloadBtn">下载游戏</div></a>
-        <div class="packetBtn" v-if="status === '无订单'" @click="goUpload()">我要领红包</div>
+        <div class="downloadBtn" @click="showPop()">下载游戏</div>
+        <div class="packetBtn" v-if="status === '无订单' || status === '仅下载'" @click="goUpload()">我要领红包</div>
         <div class="packetBtn" v-else-if="status === '未审核'" >已提交,请等待审核</div>
         <div class="packetBtn" v-else-if="status === '审核通过'" @click="goHome()">任务完成,去贝好赚领钱</div>
         <div class="packetBtn" v-else-if="status === '审核不通过'" @click="goUpload()">未通过审核,重新上传</div>
+      </div>
+      <div class="mask" v-show="showPopBox"></div>
+      <div class="popBox"  v-show="showPopBox">
+        <div class="popTitle">下载说明</div>
+        <div class="popCon">
+          1.	您即将前往游戏下载页面，下载游戏后请不要忘记打开游戏截屏哦<br>
+          2.	关闭页面后请通过贝好赚公众号重新进入活动页面<br>
+          3.	点击“二重礼-我要抢红包”<br>
+          4.	进入页面点击“我要领红包”上传截图<br>
+        </div>
+        <div class="popBtn"  @click="closePop()" v-show="show">关闭</div>
+        <div class="popBtn disabled" v-show="!show">关闭({{count}}s）</div>
+
       </div>
     </div>
 </template>
@@ -48,41 +59,13 @@
       name: "GameDetail",
       data(){
         return{
+          qrcode:require('../../assets/qrcode.png'),
+          timer: null,
+          count: null,
+          show: true,
+          showPopBox:false,
           status:'',
-          swiperOption: {
-            loop: true,  // 循环
-            speed:800,  //切换速度
-            mousewheelControl: false,// 禁止鼠标滚轮切换
-            lazy: {
-              loadPrevNext: true,
-            },
-            autoplay: {
-              delay:2000,
-              stopOnLastSlide: false, // 切换到最后一个时不停止
-              disableOnInteraction: false, //用户操作swiper之后 不停止autoplay
-            },
-            coverflowEffect: {
-              rotate: 0,
-              stretch: -70, // slide左右距离
-              depth: 300, // slide前后距离
-              modifier: 0.5, //
-              slideShadows: false // 滑块遮罩层
-            },
-            watchSlidesProgress:true,
-            centeredSlides: true, //设定为true时，活动块会居中，而不是默认状态下的居左。
-            spaceBetween:10,
-            loopedSlides :2,
-            observer: true,
-            observeParents: true,
-            effect: "coverflow",
-            grabCursor: true,
-            slidesPerView: 1.55,
-          },
-          imgList:[
-            {'imgUrl':'/static/bannerImg/banner1.jpeg'},
-            {'imgUrl':'/static/bannerImg/banner2.jpeg'},
-            {'imgUrl':'/static/bannerImg/banner3.jpeg'},
-          ],
+          imgUrl:'/static/bannerImg/banner1.jpeg'
         }
       },
       computed: {
@@ -94,6 +77,30 @@
         this.getBtnStatus();
       },
       methods:{
+        showPop(){
+          this.showPopBox = true;
+          this.getCode();
+          GIFT.setDownload()
+            .then(res => {})
+        },
+        getCode() {
+          let _this = this;
+          _this.show = false;
+          const TIME_COUNT = 5;
+          if (!_this.timer) {
+            _this.count = TIME_COUNT;
+            _this.show = false;
+            _this.timer = setInterval(() => {
+              if (_this.count > 0 && _this.count <= TIME_COUNT) {
+                _this.count--;
+              } else {
+                _this.show = true;
+                clearInterval(_this.timer);
+                _this.timer = null;
+              }
+            }, 1000)
+          }
+        },
         goUpload(){
           this.$router.push({
             name:'PicUpload'
@@ -111,6 +118,10 @@
         },
         goHome(){
           window.open('https://www.beihaozhuan.com','_self');
+        },
+        closePop(){
+          this.showPopBox = false;
+          window.open('http://qpm.boxiangyx.com/mobile/mp/extension.html?agentId=2000551','_self');
         }
       },
       watch:{
@@ -166,31 +177,84 @@
     font-weight:600;
   }
   .tips{
-    width: 290*2px;
+    width: 310*2px;
     margin: auto;
     color: #6B3808;
     line-height: 45px;
   }
   .fistTips{
-    margin-top: 160px;
+    margin-top: 150px;
   }
   .bannerCon{
-    width: 100%;
-    height: 134*2px;
-    margin: 10px 0;
+    width: 280*2px;
+    height: 125*2px;
+    background: red;
+    margin: 2px auto;
   }
   .qrcodeCon{
-    width: 122*2px;
-    height: 122*2px;
+    width: 100*2px;
+    height: 100*2px;
     background: #ccc;
     margin: auto;
-    margin-top: 20px;
-    .bg-image("~index/assets/qrcode");
+    margin-top: 10px;
   }
   .imgCon{
     width: 100%;
     height: 100%;
   }
-
+  .mask{
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .4;
+    z-index: 99;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .popBox{
+    width: 294*2px;
+    height: 300*2px;
+    background: #fff;
+    border-radius: 12px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: 999;
+  }
+  .popTitle{
+    width: 161*2px;
+    height: 40px;
+    margin: 32px auto 0 auto;
+    color: #333333;
+    font-size: 28px;
+    line-height: 40px;
+    font-weight:600;
+    text-align: center;
+  }
+  .popCon{
+    height: 190*2px;
+    padding: 24px 50px;
+    color: #333;
+    opacity: .5;
+    font-size: 26px;
+    overflow-y: auto;
+    line-height: 50px;
+  }
+  .popBtn{
+    height: 48*2px;
+    line-height: 48*2px;
+    text-align: center;
+    margin: auto;
+    font-size: 28px;
+    color: #333;
+    border-top: 2px solid #F4F4F4;
+  }
+  .disabled{
+    color: #ccc;
+  }
 
 </style>

@@ -4,12 +4,12 @@
     <div class="conBg"></div>
     <div class="giftListCon">
       <div class="giftItem oneImg">
-        <a :href="'https://www.beihaozhuan.com'"><div class="btn oneBtn">我要领现金</div></a>
-        <div class="tips oneTips" @click="showTipsPop('领钱攻略')">领钱攻略></div>
+        <div class="btn oneBtn" @click="go('one')">{{oneText}}</div>
+        <div class="tips oneTips" @click="showTipsPop('领钱攻略')">领钱攻略</div>
       </div>
       <div class="giftItem twoImg">
         <div class="btn twoBtn" @click="go('two')">我要抢红包</div>
-        <div class="tips oneTips" @click="showTipsPop('红包攻略')">红包攻略></div>
+        <div class="tips oneTips" @click="showTipsPop('红包攻略')">红包攻略</div>
       </div>
       <div class="giftItem threeImg">
         <div class="btn twoBtn" v-if="showBtn" @click="go('three')">我要去邀请</div>
@@ -17,7 +17,7 @@
         <div class="btn twoBtn" v-else-if="inviteData && inviteData.recentAmount >= inviteData.requireAmount && !inviteData.completed" @click="go('getReward')">领取礼金</div>
         <div class="btn twoBtn" v-else-if="inviteData && inviteData.completed">已完成</div>
         <div class="btn twoBtn" v-else-if="!inviteData" @click="go('notyet')">未开始</div>
-        <div class="tips oneTips" @click="showTipsPop('邀请攻略')">邀请攻略></div>
+        <div class="tips oneTips" @click="showTipsPop('邀请攻略')">邀请攻略</div>
       </div>
     </div>
     <div class="moreGameCon">
@@ -29,21 +29,22 @@
       <div class="closeBtn" @click="closePop()"></div>
       <GIFTTIP :type="this.type"></GIFTTIP>
     </div>
-    <div class="tipPop" v-if="showPoster" @click="closePop()">
-      <INVITEPOSTER></INVITEPOSTER>
+    <div v-if="showPoster" @click="closePop()">
+      <GIFTPOSTER></GIFTPOSTER>
     </div>
   </div>
 </template>
 
 <script>
   import GIFTTIP from 'gift/pages/Gift/GiftTip.vue'
-  import INVITEPOSTER from 'index/pages/poster/InvitePoster.vue'
+  import GIFTPOSTER from 'gift/pages/Gift/GiftPoster.vue'
   import TASK from 'index/service/task-service.js'
   import MUtil from '@/utils/mm.js'
     export default {
-        name: "Gift",
+      name: "Gift",
       data(){
           return{
+            oneText:'我要领现金',
             showPoster:false,
             showPop:false,
             type:'',
@@ -54,17 +55,26 @@
           }
       },
       components:{
-        GIFTTIP,INVITEPOSTER
+        GIFTTIP,GIFTPOSTER
       },
       created(){
+        let from = this.$route.query.from;
+        if(from === 'picUpload'){
+          this.$router.push({
+            name:'Gift',
+          });
+          this.showPoster = true;
+        }
         MUtil.formRequestios('/user/isLogin', {}, 'get')
           .then(res => {
             console.log('判断登录状态', res);
             if (res.data === '用户已经登录') {
               this.getInviteInfo();
+              this.oneText = '已完成'
+            }else {
+              this.oneText = '我要领现金'
             }
           });
-
       },
       methods:{
           //判断当前手机环境是安卓还是ios
@@ -72,13 +82,12 @@
           let u = navigator.userAgent, app = navigator.appVersion;
           let isAndroid = u.indexOf('Android') > -1; //android终端或者uc浏览器
           let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-          if(isAndroid){
-            this.$router.push({
-              path: '/gameDetail',
-              name:'GameDetail'
-            });
-          }else if(isiOS){
+          if(isiOS){
             alert('亲，本活动仅限安卓手机用户试玩，请使用安卓手机登陆或体验其他活动哟~');
+          }else {
+            this.$router.push({
+              name:'GameDetail'
+            })
           }
         },
           //获取邀请状态
@@ -99,6 +108,7 @@
           this.showPop = true;
         },
         closePop(){
+          this.$router.go(0);
           this.showPop = false;
           this.showPoster = false;
         },
@@ -111,7 +121,7 @@
                 that.getInviteInfo();
                 switch(type) {
                   case 'one':
-                    window.location.href="https://www.beihaozhuan.com";
+                    this.oneText = '已完成';
                     break;
                   case 'two':
                     this.IsIA();  //判断当前手机环境是苹果还是安卓
@@ -152,7 +162,7 @@
         },
         // 微信授权登录
         wechatLogin(){
-          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/wechat/callback&response_type=code&scope=snsapi_userinfo&state=CHECK#wechat_redirect';
+          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/wechat/callback&response_type=code&scope=snsapi_userinfo&state=gift#wechat_redirect';
           window.open(url,'_self');
         },
       }
@@ -219,16 +229,24 @@
   .twoBtn{
     top: 93*2px;
   }
+  .threeImg .twoBtn{
+    top: 110*2px;
+  }
   .tips{
-    width: 300px;
-    height: 40px;
-    line-height: 40px;
-    color: #9E2A00;
+    width: 280px;
+    height: 48px;
+    line-height: 48px;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 24px;
     text-align: center;
     position: absolute;
     bottom: 70px;
     left: 50%;
-    margin-left: -150px;
+    margin-left: -140px;
+  }
+  .threeImg .tips{
+    bottom: 40px;
   }
   .moreGameCon{
     width: 95%;
