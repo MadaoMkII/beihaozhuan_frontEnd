@@ -19,6 +19,9 @@
         <div class="btn twoBtn" v-else-if="!inviteData" @click="go('notyet')">未开始</div>
         <div class="tips oneTips" @click="showTipsPop('邀请攻略')">邀请攻略</div>
       </div>
+      <div class="remindCon">
+        <img class="imgCon" :src=remindImg>
+      </div>
     </div>
     <div class="moreGameCon">
       <div class="moreGameTitle">更多好玩游戏</div>
@@ -44,6 +47,7 @@
       name: "Gift",
       data(){
           return{
+            remindImg:require('../../assets/remind.png'),
             oneText:'我要领现金',
             showPoster:false,
             showPop:false,
@@ -184,7 +188,7 @@
   }
   .conBg{
     width: 100%;
-    height: 512*2px;
+    height: 612*2px;
     background: #FED98D;
     margin-top: -2px;
   }
@@ -252,7 +256,7 @@
     width: 95%;
     padding: 0 42px;
     position: absolute;
-    top: 1850px;
+    top: 2150px;
   }
   .moreGameTitle{
     width: 124*2px;
@@ -293,4 +297,12 @@
     top: 60px;
     z-index: 9999;
   }
+  .remindCon{
+    width: 100%;
+  }
+  .imgCon{
+    width: 100%;
+    height: 100%;
+  }
+
 </style>

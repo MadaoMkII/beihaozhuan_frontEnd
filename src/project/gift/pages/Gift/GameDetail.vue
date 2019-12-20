@@ -41,10 +41,10 @@
       <div class="popBox"  v-show="showPopBox">
         <div class="popTitle">下载说明</div>
         <div class="popCon">
-          1.	您即将前往游戏下载页面，下载游戏后请不要忘记打开游戏截屏哦<br>
-          2.	关闭页面后请通过贝好赚公众号重新进入活动页面<br>
-          3.	点击“二重礼-我要抢红包”<br>
-          4.	进入页面点击“我要领红包”上传截图<br>
+          1.	您即将前往游戏下载页面，下载游戏后请不要忘记<span class="redColor">打开游戏截屏</span>哦<br>
+          2.	关闭页面后请通过<span class="redColor">贝好赚公众号</span>重新进入活动页面<br>
+          3.	点击<span class="redColor">“二重礼"</span>我要抢红包<br>
+          4.	进入页面点击<span class="redColor">“我要领红包”</span>上传截图<br>
         </div>
         <div class="popBtn"  @click="closePop()" v-show="show">关闭</div>
         <div class="popBtn disabled" v-show="!show">关闭({{count}}s）</div>
@@ -256,5 +256,7 @@
   .disabled{
     color: #ccc;
   }
-
+  .redColor{
+    color: red;
+  }
 </style>
