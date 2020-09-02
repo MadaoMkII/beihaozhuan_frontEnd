@@ -3,7 +3,7 @@
       <div class="gameDetailBg"></div>
       <div class="flowCon">
         <div class="tips fistTips">
-          1、点击“下载游戏”安装捕鱼欢乐颂，登录注册账号并试玩，<span style="color: #D21212">限定安卓操作系统手机可下载试玩(小米手机除外)</span>
+          1、点击“下载游戏”安装鱼潮来了，登录注册账号并试玩，<span style="color: #D21212">限定安卓操作系统手机可下载试玩(小米手机除外)</span>
         </div>
         <div class="tips">
           2、下载游戏后，请运行游戏，参照下图示例，进行截图保存
@@ -121,7 +121,7 @@
         },
         closePop(){
           this.showPopBox = false;
-          window.open('http://qpm.boxiangyx.com/mobile/mp/extension.html?agentId=2000551','_self');
+          window.open('https://pic.3669yx.com/channel/9EE745081D671FED/index.html','_self');
         }
       },
       watch:{

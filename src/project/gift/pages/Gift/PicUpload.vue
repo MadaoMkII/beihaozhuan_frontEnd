@@ -41,7 +41,7 @@
       <div class="popBox"  v-show="showPopBox">
         <div class="popTitle">说明</div>
         <div class="popCon">
-          1.	贝好赚已经收到您的截图啦，小编紧急审核中，请耐心等待<br>
+          1.	贝好赚已经收到您的截图啦，小编紧急审核中，请耐心等待，结果以短信告知<br>
           2.	点击关闭弹窗，开启三重礼任务，邀请好友可获取第三个红包哦~<br>
         </div>
         <div class="popBtn"  @click="closePop()">关闭</div>

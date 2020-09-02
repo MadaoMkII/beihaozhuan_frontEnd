@@ -3,7 +3,7 @@
     <div class="gameTitleTop"></div>
     <div class="swiperCon">
       <swiper class="swiper" :options="swiperOption" ref="mySwiper">
-        <swiper-slide  v-for="item in bannerImgList">
+        <swiper-slide  v-for="(item,index) in bannerImgList" :key="index">
           <a :href="item.link"><img class="imgCon" v-bind:src="item.imgUrl"></a>
         </swiper-slide>
         <div class="swiper-pagination"  slot="pagination"></div>

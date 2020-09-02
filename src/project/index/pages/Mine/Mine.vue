@@ -8,7 +8,7 @@
         <div class="mineName" v-else @click="goLogin()">点击登录</div>
       </div>
 <!--        原余额，提现显示区域   开始-->
-      <div class="coinCon">
+      <!-- <div class="coinCon">
         <div class="coinItem totalCoin"  @click="goPage('Record','')">
           <div class="count" v-if="totalCoin !=''">{{totalCoin}}金币</div>
           <div class="count" v-else>— —</div>
@@ -25,24 +25,24 @@
             <div class="icon"></div>
           </div>
         </div>
-      </div>
+      </div> -->
         <!--        原余额，提现显示区域   结束-->
 
 <!--        修改后的当前余额显示区域-->
 
 
-<!--        <div class="coinCon">-->
-<!--          <div class="balanceCon">-->
-<!--            <div class="balanceTitle">当前余额(金币)</div>-->
-<!--            <div class="balanceCount">-->
-<!--              <span class="balanceTotal" v-if="Bcoins !=''">{{Bcoins}}金币</span>-->
-<!--              <span class="balanceTotal" v-else>— —</span>-->
-<!--              <span class="balanceRmb"  v-if="Bcoins !=''">约¥{{Bcoins/10000}}元</span>-->
-<!--              <span class="balanceRmb" v-else>— —</span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="applyBtn" @click="gotoCashout()">立即提现</div>-->
-<!--        </div>-->
+        <div class="coinCon">
+          <div class="balanceCon">
+           <div class="balanceTitle">当前余额(金币)</div>
+           <div class="balanceCount">
+             <span class="balanceTotal" v-if="Bcoins !=''">{{Bcoins}}金币</span>
+             <span class="balanceTotal" v-else>— —</span>
+             <span class="balanceRmb"  v-if="Bcoins !=''">约¥{{Bcoins/10000}}元</span>
+             <span class="balanceRmb" v-else>— —</span>
+           </div>
+          </div>
+          <div class="applyBtn" @click="gotoCashout()">立即提现</div>
+        </div>
 
 
 

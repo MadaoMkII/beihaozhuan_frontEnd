@@ -15,13 +15,13 @@
     <div class="itemCon paddingRight">
       <div class="ItemTitle"><div class="borderIcon"></div>活动提现</div>
       <div class="cashCardCon clearfix">
-        <div class="bubble">双十二活动可提</div>
+        <div class="bubble">限时提现</div>
         <div class="cashCard" :class="{'active' : twelve}" @click="changeTwelve()">¥{{twelveData.amount/100}}元</div>
       </div>
       <div class="tipsCon">
         <div class="down"></div>
-        <div class="tipsTitle">双十二活动提现额度说明：</div>
-        <div class="tipsDetail">该提现额度仅限完成了贝好赚双十二感恩活动中游戏试玩的用户提现</div>
+        <div class="tipsTitle">限时提现说明：</div>
+        <div class="tipsDetail">该提现额度限时开放</div>
       </div>
     </div>
     <div class="itemCon">
@@ -103,7 +103,7 @@
               if(res.code === "0"){
                 let data = res.data.withDrewSetting;
                 for(let i=0;i<data.length;i++){
-                  if(data[i].category === '双十二活动'){
+                  if(data[i].optionType === 'E'){
                     this.twelveData = data[i]
                   }else {
                     this.dataList.push(data[i])
