@@ -1,8 +1,8 @@
 <template>
   <div style="height: 100%;overflow-y: hidden">
-      <div class="bannerAdCon" v-if="title === '新手任务—一元攻略'" style="height: 100%;overflow-y: hidden">
+      <div class="bannerAdCon" v-if="title === '新手任务—一元攻略'" style="height: calc(100% - 60px);overflow-y: hidden">
         <div class="closeBtn" @click="prev()" v-show="closeShow">X</div>
-        <iframe frameborder="0" width="100%" src="https://v.qq.com/txp/iframe/player.html?vid=i3007peh5hm" allowFullScreen="true"></iframe>
+        <iframe frameborder="0" height="100%" width="100%" src="https://v.qq.com/txp/iframe/player.html?vid=g3146erei2o" allowFullScreen="true"></iframe>
       </div>
       <div class="bannerAdCon" v-else-if="title === '新手教程2—快速上手'" style="height: 100%;overflow-y: hidden">
       <div class="closeBtn" @click="prev()">X</div>
@@ -42,7 +42,8 @@
 
 <style lang="less" scoped>
   .bannerAdCon{
-    margin-top: 395px;
+    margin-top: 60px;
+    // transform:rotate(90deg);
   }
   .closeBtn{
     width: 40px;
