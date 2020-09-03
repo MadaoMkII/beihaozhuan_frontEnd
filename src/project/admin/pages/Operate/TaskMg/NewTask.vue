@@ -176,7 +176,7 @@
           query.title = data.title;
           query.reward = data.reward;
           query.imgUrl = data.imgUrl ? data.imgUrl : ''
-        }else if(title === '新手教程1—注册与登陆' || title === '新手教程2—快速上手' || title === '新手教程3—任务介绍' || title === '新手教程4—注意事项' || title === '活动—双十二邀请好友得现金'){
+        }else if(title === '新手任务—一元攻略' || title === '新手教程2—快速上手' || title === '新手教程3—任务介绍' || title === '新手教程4—注意事项' || title === '活动—邀请好友得现金'){
           this.routerName = 'Course';
           query.uuid = data.UUid;
           query.title = data.title;

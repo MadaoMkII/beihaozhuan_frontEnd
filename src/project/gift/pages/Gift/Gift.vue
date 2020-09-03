@@ -100,7 +100,7 @@
             .then(res => {
               // console.log('新手任务', res);
               if (res.code === "0") {
-                const found = res.data.find(element => element.missionEventName === '活动—双十二邀请好友得现金');
+                const found = res.data.find(element => element.missionEventName === '活动—邀请好友得现金');
                   this.inviteData = found;
                   console.log('inviteData',this.inviteData)
                   this.showBtn = false;
@@ -135,7 +135,7 @@
                     this.getInviteInfo();
                     break;
                   case  'getReward':
-                    this.completeMission('Permanent','活动—双十二邀请好友得现金');
+                    this.completeMission('Permanent','活动—邀请好友得现金');
                     break;
                   case 'three':
                     this.showPoster=true;

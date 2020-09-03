@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%;overflow-y: hidden">
-      <div class="bannerAdCon" v-if="title === '新手教程1—注册与登陆'" style="height: 100%;overflow-y: hidden">
-        <div class="closeBtn" @click="prev()">X</div>
+      <div class="bannerAdCon" v-if="title === '新手任务—一元攻略'" style="height: 100%;overflow-y: hidden">
+        <div class="closeBtn" @click="prev()" v-show="closeShow">X</div>
         <iframe frameborder="0" width="100%" src="https://v.qq.com/txp/iframe/player.html?vid=i3007peh5hm" allowFullScreen="true"></iframe>
       </div>
       <div class="bannerAdCon" v-else-if="title === '新手教程2—快速上手'" style="height: 100%;overflow-y: hidden">
@@ -25,12 +25,17 @@
         name: "Video",
       data(){
           return{
-            title:''
+            title:'',
+            closeShow:false,
           }
       },
       created() {
           this.title = this.$route.query.title;
           // this.title = '新手教程2—快速上手'
+          let self = this;
+          setTimeout(function(){
+            self.closeShow = true;
+          },15000)
       }
     }
 </script>

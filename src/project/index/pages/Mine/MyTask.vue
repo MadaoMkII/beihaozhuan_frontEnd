@@ -55,7 +55,7 @@
           <div class="smTaskTitle">更多金币等你来拿</div>
           <div class="smTaskTitle hideBtnRight" @click="boxshowWeek = !boxshowWeek">{{!boxshowWeek ? '点击展开' : '点击收起'}}</div>
         </div>
-        <div class="taskItem" v-for="item in WeeklyList"  v-show="boxshowWeek">
+        <div class="taskItem" v-for="(item,index) in WeeklyList"  v-show="boxshowWeek" :key="index">
           <div class="taskImg info1">
             <img class="imgCon" v-bind:src="item.missionID.imgUrl">
           </div>
@@ -206,7 +206,7 @@
             type = 'Apply'
           }else if(title === '每周看广告' || title === '每日看广告' || title === '看一些广告' || title === '每日看广告_高级'){
             type = 'Task'
-          }else if(title === '新手教程1—注册与登陆' || title === '新手教程2—快速上手' || title === '新手教程3—任务介绍' || title === '新手教程4—注意事项'){
+          }else if(title === '新手任务—一元攻略' || title === '新手教程2—快速上手' || title === '新手教程3—任务介绍' || title === '新手教程4—注意事项'){
             let data = {
               'missionName':title
             };
@@ -236,7 +236,7 @@
                 }
               })
 
-          }else if(title === '每日邀新人' || title === '每周邀新人' || title === '活动—双十二邀请好友得现金'){
+          }else if(title === '每日邀新人' || title === '每周邀新人' || title === '活动—邀请好友得现金'){
             // console.log('跳转到邀请新人页面，进行分享')
             this.showPosterPop('showInvitePoster');
           }
