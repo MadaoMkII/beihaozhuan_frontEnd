@@ -5,9 +5,9 @@
     </div>
     <div class="globalCon">
       <keep-alive>
-        <router-view v-if="$route.meta.keepAlive"></router-view>
+        <router-view v-if="$route.meta.keepAlive && isRouterAlive"></router-view>
       </keep-alive>
-      <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <router-view v-if="!$route.meta.keepAlive && isRouterAlive"></router-view>
     </div>
   </div>
 </template>
@@ -15,10 +15,16 @@
   import Tabs from "./components/Tabs/Tabs.vue"
   export default {
     name: 'App',
+    provide(){
+      return {
+        reload:this.reload
+      }
+    },
     data(){
       return {
         path : '',
-        tabs : false
+        tabs : false,
+        isRouterAlive:true
       }
     },
     components: {Tabs},
@@ -39,6 +45,14 @@
         } else {
           this.tabs = false;
         }
+      }
+    },
+    methods:{
+      reload(){
+        this.isRouterAlive = false;
+        this.$nextTick(()=>{
+          this.isRouterAlive = true;
+        })
       }
     }
   }

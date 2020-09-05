@@ -65,6 +65,7 @@
   import MINE from 'index/service/mine-service.js'
   import MineInfo from 'index/service/mine-service.js'
     export default {
+      inject:['reload'],
       name: "ApplyNew",
       data(){
         return{
@@ -186,6 +187,7 @@
             .then(res => {
               if(res.code == '0'){
                 this.$toastMessage({message: '提现成功', messageType: 'success'});
+                this.reload();
               }else if(res.code == 400){
                 this.$toastMessage({message: res.data, messageType: 'text'});
               }
