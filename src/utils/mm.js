@@ -4,8 +4,9 @@ import qs from 'qs'
 
 const service = axios.create({
     // baseURL:'http://192.168.1.183:3000',
-    baseURL:'https://www.beihaozhuan.com',
+    // baseURL:'https://www.beihaozhuan.com',
     // baseURL:'http://39.100.32.180',
+    baseURL: '/api/',
     withCredentials:true,
     headers:{
         // 'Content-Type' : 'application/json;charset=utf-8',
@@ -15,8 +16,9 @@ const service = axios.create({
 });
 const formService = axios.create({
     // baseURL:'http://192.168.1.183:3000',
-    baseURL:'https://www.beihaozhuan.com',
+    // baseURL:'https://www.beihaozhuan.com',
     // baseURL:'http://39.100.32.180',
+    baseURL: '/api/',
     withCredentials:true,
     headers:{
         'Content-Type': 'multipart/form-data',
@@ -25,8 +27,9 @@ const formService = axios.create({
 });
 const formServiceios = axios.create({
   // baseURL:'http://192.168.1.183:3000',
-  baseURL:'https://www.beihaozhuan.com',
+  // baseURL:'https://www.beihaozhuan.com',
   // baseURL:'http://39.100.32.180',
+  baseURL: '/api/',
   withCredentials:true,
   headers:{
     'Content-Type': 'application/x-www-form-urlencoded',
