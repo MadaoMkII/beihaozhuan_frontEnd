@@ -20,10 +20,16 @@
             <div class="subTabItemBorder"></div>
           </router-link>
         </div>
+        <div class="subTabItem">
+          <router-link :to="{name:'Cashback'}">
+            <div class="subTabText">还款减负活动管理</div>
+            <div class="subTabItemBorder"></div>
+          </router-link>
+        </div>
       </div>
     </div>
 
-    <div class="centerCon" v-if="!showFormPage">
+    <div :class="{ 'centerCon': noContainerStyles === undefined }" v-if="!showFormPage">
       <router-view></router-view>
     </div>
     <div class="centerCon" v-else-if="showFormPage && routerName === 'AddType'">
@@ -103,12 +109,14 @@
       },
       data(){
         return {
+          noContainerStyles: false,
           showFormPage : false,
           routerName : ''
         }
       },
       created() {
         let showFormPage =this.$route.meta.showFormPage;
+        this.noContainerStyles = this.$route.meta.noContainerStyles;
         this.routerName = this.$route.name;
         if(showFormPage){
           this.showFormPage = showFormPage;
@@ -119,6 +127,7 @@
       watch:{
         '$route'(){
           let showFormPage =this.$route.meta.showFormPage;
+          this.noContainerStyles = this.$route.meta.noContainerStyles;
           this.routerName = this.$route.name;
           if(showFormPage){
             this.showFormPage = showFormPage;
@@ -131,5 +140,9 @@
 </script>
 
 <style scoped>
-
+.subTabItem {
+  width: auto;
+  padding: 0 16px;
+  margin-right: 0;
+}
 </style>

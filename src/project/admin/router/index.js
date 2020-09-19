@@ -44,6 +44,11 @@ import InfoSet from "admin/pages/Operate/TaskMg/NewTask/InfoSet";
 import OnlineTime from "admin/pages/Operate/TaskMg/NewTask/OnlineTime";
 import Watch from "admin/pages/Operate/TaskMg/NewTask/Watch";
 import Course from "admin/pages/Operate/TaskMg/NewTask/Course";
+import Cashback from "admin/pages/Operate/Cashback";
+import CashbackStep from "admin/pages/Operate/Cashback/Step";
+import CashbackGame from "admin/pages/Operate/Cashback/Game";
+import CashbackStepSetting from "admin/pages/Operate/Cashback/StepSetting";
+import CashbackReview from "admin/pages/Operate/Cashback/Review";
 import Administrators from "admin/pages/System/Administrators";
 import SystemSet from "admin/pages/System/SystemSet";
 // import SSPSet from "admin/pages/System/SSPSet";
@@ -65,7 +70,7 @@ export default new Router({
     },
     {
       path: '/',
-      name: 'Main',
+      // name: 'Main',
       component: Main,
       children: [
         {
@@ -353,7 +358,43 @@ export default new Router({
               component: ActivityMg,
               name: 'ActivityMg',
               meta: {title: '活动管理', noCache: true, authLogin: true}
-            }
+            },
+            {
+              path: '/operate/cashback',
+              component: Cashback,
+              meta: {title: '还款减负活动管理', noCache: true, noContainerStyles: true, authLogin: true},
+              children: [
+                {
+                  name: 'Cashback',
+                  path: '',
+                  redirect: { name: 'CashbackStep', params: { step: '1' } },
+                },
+                {
+                  path: 'step/:step',
+                  component: CashbackStep,
+                  name: 'CashbackStep',
+                  meta: {title: '还款减负活动管理', noCache: true, noContainerStyles: true, authLogin: true},
+                },
+              ]
+            },
+            {
+              path: '/operate/cashback/game',
+              component: CashbackGame,
+              name: 'CashbackGame',
+              meta: {title: '还款减负活动管理', noCache: true, noContainerStyles: true, authLogin: true},
+            },
+            {
+              path: '/operate/cashback/step-setting/:step',
+              component: CashbackStepSetting,
+              name: 'CashbackStepSetting',
+              meta: {title: '还款减负活动管理', noCache: true, noContainerStyles: true, authLogin: true},
+            },
+            {
+              path: '/operate/cashback/review',
+              component: CashbackReview,
+              name: 'CashbackReview',
+              meta: {title: '还款减负活动管理', noCache: true, noContainerStyles: true, authLogin: true},
+            },
           ]
         },
         //系统

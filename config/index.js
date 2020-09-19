@@ -17,6 +17,11 @@ module.exports = {
         ws: true,
         changeOrigin: true,
       },
+      '/api2/': {
+        target: 'https://www.mystery-vr.com:3200',
+        ws: true,
+        changeOrigin: true,
+      },
     },
 
     // Various Dev Server settings
