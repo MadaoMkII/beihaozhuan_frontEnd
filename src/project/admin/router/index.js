@@ -54,6 +54,7 @@ import SystemSet from "admin/pages/System/SystemSet";
 // import SSPSet from "admin/pages/System/SSPSet";
 import AddAdministrators from "admin/pages/System/AddAdministrators";
 import SystemLog from "admin/pages/System/SystemLog";
+import test from "admin/pages/test";
 
 
 
@@ -440,6 +441,11 @@ export default new Router({
           ]
         }
       ]
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test,
     }
   ]
 })

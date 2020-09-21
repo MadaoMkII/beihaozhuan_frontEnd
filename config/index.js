@@ -11,14 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      // '/api/': {
+      //   target: 'https://www.beihaozhuan.com',
+      //   pathRewrite: { '^/api': '/' },
+      //   ws: true,
+      //   changeOrigin: true,
+      // },
       '/api/': {
-        target: 'https://www.beihaozhuan.com',
-        pathRewrite: { '^/api': '/' },
-        ws: true,
-        changeOrigin: true,
-      },
-      '/api2/': {
-        target: 'https://www.mystery-vr.com:3200',
+        target: 'http://www.mystery-vr.com:9001',
         ws: true,
         changeOrigin: true,
       },
@@ -65,7 +65,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 

@@ -12,11 +12,11 @@
             <template slot="append">金币</template>
           </el-input>
         </el-form-item>
-        <el-form-item v-if="$route.params.step === '1'" label="注册奖励" prop="registerReward" class="fix-float">
-          <el-input v-model.number="form.registerReward" placeholder="请输入预期收益">
-            <template slot="append">金币</template>
-          </el-input>
-        </el-form-item>
+<!--        <el-form-item v-if="$route.params.step === '1'" label="注册奖励" prop="registerReward" class="fix-float">-->
+<!--          <el-input v-model.number="form.registerReward" placeholder="请输入预期收益">-->
+<!--            <template slot="append">金币</template>-->
+<!--          </el-input>-->
+<!--        </el-form-item>-->
         <div class="split-line"></div>
         <el-form-item label="视频教程链接" prop="videoURL" class="fix-float">
           <el-input v-model="form.videoURL" placeholder="请输入视频教程链接"></el-input>
@@ -26,6 +26,7 @@
             <template slot="append">金币</template>
           </el-input>
         </el-form-item>
+        <div class="split-line"></div>
         <el-form-item>
           <el-button type="primary" @click="submitForm('form')" :disabled="isLoading">保存</el-button>
           <el-button @click="$router.back()">取消</el-button>
@@ -40,7 +41,12 @@ import axios from "axios";
 
 export default {
   async created() {
-    console.log(await this.getSetting());
+    const data = await this.getSetting();
+    this.form.description = data.description_short;
+    this.form.reward = data.expectEarning;
+    this.form.registerReward = data.registerReward;
+    this.form.videoURL = data.videoTutorialUrl;
+    this.form.firstReward = data.firstWatchEarning;
   },
   data() {
     return {
@@ -63,7 +69,7 @@ export default {
           { type: 'integer', required: true, message: '请输入正确的金币数量', trigger: 'blur' },
         ],
         videoURL: [
-          { type: 'url', required: true, message: '请输入正确的视频教程链接', trigger: 'blur' },
+          { type: 'url', message: '请输入正确的视频教程链接', trigger: 'blur' },
         ],
         firstReward: [
           { type: 'integer', required: true, message: '请输入正确的金币数量', trigger: 'blur' },
@@ -105,7 +111,7 @@ export default {
       if (this.isLoading) return;
       try {
         this.isLoading = true;
-        await axios.post('/api2/gameEvent/setGameEvent', {
+        await axios.post('/api/gameEvent/setGameEvent', {
           category: 'STEP' + this.$route.params.step,
           description_short: this.form.description,
           expectEarning: this.form.reward,
@@ -128,7 +134,7 @@ export default {
       }
     },
     async getSetting() {
-      const response = await axios.post('/api2/gameEvent/getEventGameByCategory', {
+      const response = await axios.post('/api/gameEvent/getEventGameByCategory', {
         category: 'STEP' + this.$route.params.step
       })
       console.log(response);

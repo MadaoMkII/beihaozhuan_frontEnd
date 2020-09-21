@@ -141,7 +141,7 @@ export default {
         this.isUploading = true;
         const formData = new FormData();
         formData.append('files[]', file);
-        const response = await axios.post('/api2/images/uploadImages', formData);
+        const response = await axios.post('/api/images/uploadImages', formData);
         this.$emit('change', response.data.data);
       } catch (e) {
         if (e.response.data && e.response.data.message) {

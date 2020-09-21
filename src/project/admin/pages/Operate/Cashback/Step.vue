@@ -1,7 +1,7 @@
 <template>
   <div>
     <div style="margin-bottom: 20px; text-align: right;">
-      <el-button type="primary" @click="$router.push({ name: 'CashbackGame', query: { step: $route.params.step, type: 'add' } })">添加游戏</el-button>
+      <el-button v-if="$route.params.step !== '1'" type="primary" @click="$router.push({ name: 'CashbackGame', query: { step: $route.params.step, type: 'add' } })">添加游戏</el-button>
       <el-button type="primary" @click="$router.push({ name: 'CashbackStepSetting', params: { step: $route.params.step } })">步骤设置</el-button>
     </div>
     <el-table :data="gameList">
@@ -43,14 +43,10 @@ export default {
   },
   methods: {
     async getGameList() {
-      const response = await axios.post('/api2/gameEvent/getEventGameSettingList', {
+      const response = await axios.post('/api/gameEvent/getEventGameSettingList', {
         category: 'STEP' + this.$route.params.step
       })
-      if (this.$route.params.step === '1') {
-        return [response.data.data];
-      } else {
-        return response.data.data;
-      }
+      return response.data.data;
     },
     async deleteGame(id) {
       this.$confirm('此操作将永久删除该游戏, 是否继续?', '提示', {
@@ -59,7 +55,7 @@ export default {
         type: 'warning'
       }).then(async () => {
         try {
-          await axios.post('/api2/gameEvent/deleteEventGameSetting', {
+          await axios.post('/api/gameEvent/deleteEventGameSetting', {
             uuid: id
           });
           this.gameList.splice(this.gameList.findIndex(game => game.uuid === id), 1);

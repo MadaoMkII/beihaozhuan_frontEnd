@@ -32,35 +32,37 @@
         <el-form-item label="试玩示意图" prop="demoFile" class="fix-float">
           <image-upload v-model="form.demoFile" @change="$refs.form.validateField('demoFile')"/>
         </el-form-item>
-        <div class="split-line"></div>
-        <el-form-item label="是否开启后续任务A" prop="taskAEnableTask" class="fix-float">
-          <el-switch v-model="form.taskAEnableTask"></el-switch>
-        </el-form-item>
-        <template v-if="form.taskAEnableTask">
-          <el-form-item label="后续A任务描述" prop="taskADescription" class="fix-float">
-            <el-input v-model="form.taskADescription" placeholder="请输入后续A任务描述"></el-input>
+        <template v-if="$route.query.step !== '1'">
+          <div class="split-line"></div>
+          <el-form-item label="是否开启后续任务A" prop="taskAEnableTask" class="fix-float">
+            <el-switch v-model="form.taskAEnableTask"></el-switch>
           </el-form-item>
-          <el-form-item label="后续A任务奖励" prop="taskAReward" class="fix-float">
-            <el-input v-model.number="form.taskAReward" placeholder="请输入后续A任务奖励"></el-input>
+          <template v-if="form.taskAEnableTask">
+            <el-form-item label="后续A任务描述" prop="taskADescription" class="fix-float">
+              <el-input v-model="form.taskADescription" placeholder="请输入后续A任务描述"></el-input>
+            </el-form-item>
+            <el-form-item label="后续A任务奖励" prop="taskAReward" class="fix-float">
+              <el-input v-model.number="form.taskAReward" placeholder="请输入后续A任务奖励"></el-input>
+            </el-form-item>
+            <el-form-item label="后续A任务示意图" prop="taskADemoFile" class="fix-float">
+              <image-upload v-model="form.taskADemoFile" @change="$refs.form.validateField('taskADemoFile')"/>
+            </el-form-item>
+          </template>
+          <div class="split-line"></div>
+          <el-form-item label="是否开启后续任务B" prop="taskBEnableTask" class="fix-float">
+            <el-switch v-model="form.taskBEnableTask"></el-switch>
           </el-form-item>
-          <el-form-item label="后续A任务示意图" prop="taskADemoFile" class="fix-float">
-            <image-upload v-model="form.taskADemoFile" @change="$refs.form.validateField('taskADemoFile')"/>
-          </el-form-item>
-        </template>
-        <div class="split-line"></div>
-        <el-form-item label="是否开启后续任务B" prop="taskBEnableTask" class="fix-float">
-          <el-switch v-model="form.taskBEnableTask"></el-switch>
-        </el-form-item>
-        <template v-if="form.taskBEnableTask">
-          <el-form-item label="后续B任务描述" prop="taskBDescription" class="fix-float">
-            <el-input v-model="form.taskBDescription" placeholder="请输入后续B任务奖励"></el-input>
-          </el-form-item>
-          <el-form-item label="后续B任务奖励" prop="taskBReward" class="fix-float">
-            <el-input v-model.number="form.taskBReward" placeholder="请输入后续B任务奖励"></el-input>
-          </el-form-item>
-          <el-form-item label="后续B任务示意图" prop="taskBDemoFile" class="fix-float">
-            <image-upload v-model="form.taskBDemoFile" @change="$refs.form.validateField('taskBDemoFile')"/>
-          </el-form-item>
+          <template v-if="form.taskBEnableTask">
+            <el-form-item label="后续B任务描述" prop="taskBDescription" class="fix-float">
+              <el-input v-model="form.taskBDescription" placeholder="请输入后续B任务奖励"></el-input>
+            </el-form-item>
+            <el-form-item label="后续B任务奖励" prop="taskBReward" class="fix-float">
+              <el-input v-model.number="form.taskBReward" placeholder="请输入后续B任务奖励"></el-input>
+            </el-form-item>
+            <el-form-item label="后续B任务示意图" prop="taskBDemoFile" class="fix-float">
+              <image-upload v-model="form.taskBDemoFile" @change="$refs.form.validateField('taskBDemoFile')"/>
+            </el-form-item>
+          </template>
         </template>
         <div class="split-line"></div>
         <el-form-item>
@@ -85,19 +87,19 @@ export default {
       form: {
         name: '',
         platform: '',
-        bannerFile: 'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/EventProof/7539232096617.jpg',
+        bannerFile: '',
         downloadURL: '',
         description: '',
         reward: '',
-        demoFile: 'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/EventProof/7539232096617.jpg',
+        demoFile: '',
         taskAEnableTask: false,
         taskADescription: '',
         taskAReward: '',
-        taskADemoFile: 'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/EventProof/7539232096617.jpg',
+        taskADemoFile: '',
         taskBEnableTask: false,
         taskBDescription: '',
         taskBReward: '',
-        taskBDemoFile: 'https://beihaozhuan.oss-cn-zhangjiakou.aliyuncs.com/EventProof/7539232096617.jpg',
+        taskBDemoFile: '',
       },
       rules: {
         name: [
@@ -212,7 +214,7 @@ export default {
       if (this.isLoading) return;
       try {
         this.isLoading = true;
-        await axios.post('/api2/gameEvent/createEventGameSetting', {
+        await axios.post('/api/gameEvent/createEventGameSetting', {
           category: 'STEP' + this.$route.query.step,
           gameName: this.form.name,
           platform: this.form.platform,
@@ -256,7 +258,7 @@ export default {
       if (this.isLoading) return;
       try {
         this.isLoading = true;
-        await axios.post('/api2/gameEvent/updateEventGameSetting', {
+        await axios.post('/api/gameEvent/updateEventGameSetting', {
           uuid: this.$route.query.id,
           category: 'STEP' + this.$route.query.step,
           gameName: this.form.name,
