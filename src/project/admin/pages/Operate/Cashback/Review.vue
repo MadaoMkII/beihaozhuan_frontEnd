@@ -2,6 +2,27 @@
   <div class="container">
     <el-card shadow="never">
       <div slot="header">审核列表</div>
+      <el-radio-group style="margin-bottom: 20px;" v-model="form.type" @change="onFilter">
+        <el-radio-button label="试玩任务"></el-radio-button>
+        <el-radio-button label="后续任务A"></el-radio-button>
+        <el-radio-button label="后续任务B"></el-radio-button>
+      </el-radio-group>
+      <el-form :inline="true" :model="form">
+        <el-form-item label="账号" class="fix-float">
+          <el-input v-model="form.phone" placeholder="账号"></el-input>
+        </el-form-item>
+        <el-form-item label="状态" class="fix-float">
+          <el-select v-model="form.status" placeholder="状态">
+            <el-option label="全部" value=""></el-option>
+            <el-option label="未审核" value="未审核"></el-option>
+            <el-option label="审核未通过" value="审核未通过"></el-option>
+            <el-option label="审核通过" value="审核通过"></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onFilter">查询</el-button>
+        </el-form-item>
+      </el-form>
       <el-table :data="reviewList">
         <el-table-column type="index" />
         <el-table-column prop="name" label="游戏名称" />
@@ -33,6 +54,13 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        @current-change="getReviewList"
+        :current-page.sync="page"
+        :page-size="pageSize"
+        layout="total, prev, pager, next"
+        :total="total">
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -45,48 +73,71 @@ export default {
     return {
       reviewList: [],
       isLoading: false,
+      form: {
+        type: '试玩任务',
+        phone: '',
+        status: '',
+      },
+      page: 1,
+      pageSize: 20,
+      total: 0,
     };
   },
   async created() {
-    this.reviewList = await this.getReviewList();
+    await this.getReviewList();
   },
   methods: {
     async getReviewList() {
       const response = await axios.post('/api/gameEvent/getAuditUploadRecordList', {
         category: 'STEP' + this.$route.query.step,
-        unit: 1000,
-        page: 1,
+        unit: this.pageSize,
+        page: this.page,
+        tel_number: this.form.phone,
+        status: this.form.status,
+        type: this.form.type,
       })
-      return response.data.data;
+      this.reviewList = response.data.data;
+      this.total = response.data.totalCount;
     },
     async submitReview(id, is) {
+      if (!is) {
+        await this.review(id, is);
+        return;
+      }
       this.$confirm(`确认${ is ? '通过' : '不通过' }审核嘛?`, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(async () => {
-        if (this.isLoading) return;
-        try {
-          this.isLoading = true;
-          await axios.post('/api/gameEvent/approveAuditUploadRecord', {
-            decision: is,
-            uuid: id
-          });
-          this.reviewList = await this.getReviewList();
-          this.$message({
-            type: 'success',
-            message: '审核成功!'
-          });
-        } catch (e) {
-          if (e.response.data && e.response.data.message) {
-            this.$message({ type: 'error', message: e.response.data.message });
-          } else {
-            this.$message({ type: 'error', message: '请求失败，服务器发生错误' });
-          }
-        } finally {
-          this.isLoading = false;
-        }
+        await this.review(id, is);
       }).catch(() => { });
+    },
+    async review(id, is) {
+      if (this.isLoading) return;
+      try {
+        this.isLoading = true;
+        await axios.post('/api/gameEvent/approveAuditUploadRecord', {
+          decision: is,
+          uuid: id
+        });
+        await this.getReviewList();
+        this.$message({
+          type: 'success',
+          message: '审核成功!'
+        });
+      } catch (e) {
+        if (e.response.data && e.response.data.message) {
+          this.$message({ type: 'error', message: e.response.data.message });
+        } else {
+          this.$message({ type: 'error', message: '请求失败，服务器发生错误' });
+        }
+      } finally {
+        this.isLoading = false;
+      }
+    },
+    onFilter() {
+      this.page = 1;
+      this.getReviewList();
     },
   },
 };
@@ -98,5 +149,9 @@ export default {
   width: 1152px;
   background: #fff;
   border-radius: 4px;
+}
+
+.fix-float >>> .el-form-item__label {
+  float: none;
 }
 </style>

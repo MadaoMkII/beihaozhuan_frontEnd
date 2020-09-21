@@ -60,7 +60,7 @@ export default {
       rules: {
         description: [
           { required: true, message: '请输入试玩描述', trigger: 'blur' },
-          { min: 3, max: 250, message: '长度在 1 到 250 个字符', trigger: 'blur' },
+          { min: 2, max: 250, message: '长度在 2 到 250 个字符', trigger: 'blur' },
         ],
         reward: [
           { type: 'integer', required: true, message: '请输入正确的金币数量', trigger: 'blur' },
