@@ -211,6 +211,10 @@
                 //   this.$router.push('/');
                 // }
                 let redirect = decodeURIComponent(this.$route.query.redirect || '/');
+                if (this.$route.query.action === 'cashback-game') {
+                  window.open(redirect, '_self');
+                  return;
+                }
                 this.$router.push({path:redirect})
               }
             })
