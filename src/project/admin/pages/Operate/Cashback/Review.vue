@@ -109,6 +109,7 @@ export default {
         tel_number: this.form.phone,
         status: this.form.status,
         sub_title: this.form.type,
+        missionUUid: this.$route.query.gameId,
       })
       this.reviewList = response.data.data;
       this.total = response.data.totalCount;

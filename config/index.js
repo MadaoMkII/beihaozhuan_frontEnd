@@ -11,17 +11,16 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // '/api/': {
-      //   target: 'https://www.beihaozhuan.com',
-      //   pathRewrite: { '^/api': '/' },
-      //   ws: true,
-      //   changeOrigin: true,
-      // },
       '/api/': {
-        target: 'http://www.mystery-vr.com:9001',
+        target: 'https://www.beihaozhuan.com',
         ws: true,
         changeOrigin: true,
       },
+      // '/api/': {
+      //   target: 'http://www.mystery-vr.com:9001',
+      //   ws: true,
+      //   changeOrigin: true,
+      // },
     },
 
     // Various Dev Server settings
