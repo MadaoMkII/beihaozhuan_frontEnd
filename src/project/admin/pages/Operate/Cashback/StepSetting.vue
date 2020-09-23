@@ -18,8 +18,8 @@
 <!--          </el-input>-->
 <!--        </el-form-item>-->
         <div class="split-line"></div>
-        <el-form-item label="视频教程链接" prop="videoURL" class="fix-float">
-          <el-input v-model="form.videoURL" placeholder="请输入视频教程链接"></el-input>
+        <el-form-item label="视频教程代码片段" prop="videoURL" class="fix-float">
+          <el-input v-model="form.videoURL" placeholder="请输入视频教程代码片段"></el-input>
         </el-form-item>
         <el-form-item label="首次观看任务视频奖励" prop="firstReward" class="fix-float">
           <el-input v-model.number="form.firstReward" placeholder="请输入预期收益">
@@ -69,7 +69,7 @@ export default {
           { type: 'integer', required: true, message: '请输入正确的金币数量', trigger: 'blur' },
         ],
         videoURL: [
-          { type: 'url', message: '请输入正确的视频教程链接', trigger: 'blur' },
+          { message: '请输入视频教程代码片段', trigger: 'blur' },
         ],
         firstReward: [
           { type: 'integer', required: true, message: '请输入正确的金币数量', trigger: 'blur' },

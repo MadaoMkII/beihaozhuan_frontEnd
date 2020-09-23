@@ -8,7 +8,7 @@
       <el-table-column type="index" />
       <el-table-column label="LOGO">
         <template slot-scope="scope">
-          <img :src="scope.row.gameBannerUrl" :alt="scope.row.gameName" width="160" height="90">
+          <img :src="scope.row.gameBannerUrl" :alt="scope.row.gameName" width="160" height="90" @click="showPreview(scope.row.gameBannerUrl)">
         </template>
       </el-table-column>
       <el-table-column prop="gameName" label="游戏名称" />
@@ -17,15 +17,20 @@
       <el-table-column prop="subsequent_A.subsequentReward" label="后续A任务奖励" />
       <el-table-column prop="subsequent_B.subsequentReward" label="后续B任务奖励" />
       <el-table-column
+        width="200"
         fixed="right"
         label="操作">
         <template slot-scope="scope">
           <el-button type="text" @click="$router.push({ name: 'CashbackGame', query: { step: $route.params.step, type: 'edit', id: scope.row.uuid, payload: JSON.stringify(scope.row) } })">编辑</el-button>
           <el-button v-if="$route.params.step !== '1'" type="text" @click="deleteGame(scope.row.uuid)">删除</el-button>
-          <el-button type="text" @click="$router.push({ name: 'CashbackReview', query: { step: $route.params.step } })">审核</el-button>
+          <el-button type="text" @click="$router.push({ name: 'CashbackReview', query: { step: $route.params.step } })">审核（{{ scope.row.unCheckedAmount }}）</el-button>
         </template>
       </el-table-column>
     </el-table>
+    <div v-if="previewImage !== null" class="preview" @click="closePreview">
+      <img :src="previewImage">
+      <div class="preview__close"></div>
+    </div>
   </div>
 </template>
 
@@ -36,12 +41,19 @@ export default {
   data() {
     return {
       gameList: [],
+      previewImage: null,
     };
   },
   async created() {
     this.gameList = await this.getGameList();
   },
   methods: {
+    showPreview(image) {
+      this.previewImage = image;
+    },
+    closePreview() {
+      this.previewImage = null;
+    },
     async getGameList() {
       const response = await axios.post('/api/gameEvent/getEventGameSettingList', {
         category: 'STEP' + this.$route.params.step
@@ -75,3 +87,25 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview img {
+  max-width: 80%;
+}
+
+.preview__close {
+}
+</style>

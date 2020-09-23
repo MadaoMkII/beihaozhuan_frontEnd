@@ -3,9 +3,9 @@
     <el-card shadow="never">
       <div slot="header">审核列表</div>
       <el-radio-group style="margin-bottom: 20px;" v-model="form.type" @change="onFilter">
-        <el-radio-button label="试玩任务"></el-radio-button>
-        <el-radio-button label="后续任务A"></el-radio-button>
-        <el-radio-button label="后续任务B"></el-radio-button>
+        <el-radio-button label="try">试玩任务</el-radio-button>
+        <el-radio-button label="A">后续任务A</el-radio-button>
+        <el-radio-button label="B">后续任务B</el-radio-button>
       </el-radio-group>
       <el-form :inline="true" :model="form">
         <el-form-item label="账号" class="fix-float">
@@ -20,15 +20,16 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onFilter">查询</el-button>
+          <el-button type="primary" @click="onFilter" size="mini">查询</el-button>
         </el-form-item>
       </el-form>
       <el-table :data="reviewList">
         <el-table-column type="index" />
+        <el-table-column prop="tel_number" label="账号" />
         <el-table-column prop="name" label="游戏名称" />
         <el-table-column label="玩家上传截图">
           <template slot-scope="scope">
-            <img :src="scope.row.screenshotUrl" :alt="scope.row.name" width="160" height="90">
+            <img :src="scope.row.screenshotUrl" :alt="scope.row.name" width="160" height="90" @click="showPreview(scope.row.screenshotUrl)">
           </template>
         </el-table-column>
         <el-table-column prop="sub_title" label="任务类型">
@@ -42,7 +43,9 @@
         <el-table-column prop="created_at" label="提交时间" />
         <el-table-column
           fixed="right"
-          label="操作">
+          label="操作"
+          width="160"
+        >
           <template slot-scope="scope">
             <el-button-group v-if="scope.row.status === '未审核'" size="mini">
               <el-button type="success" size="mini" @click="submitReview(scope.row.uuid,true)">通过</el-button>
@@ -62,6 +65,10 @@
         :total="total">
       </el-pagination>
     </el-card>
+    <div v-if="previewImage !== null" class="preview" @click="closePreview">
+      <img :src="previewImage">
+      <div class="preview__close"></div>
+    </div>
   </div>
 </template>
 
@@ -74,19 +81,26 @@ export default {
       reviewList: [],
       isLoading: false,
       form: {
-        type: '试玩任务',
+        type: 'try',
         phone: '',
         status: '',
       },
       page: 1,
       pageSize: 20,
       total: 0,
+      previewImage: null,
     };
   },
   async created() {
     await this.getReviewList();
   },
   methods: {
+    showPreview(image) {
+      this.previewImage = image;
+    },
+    closePreview() {
+      this.previewImage = null;
+    },
     async getReviewList() {
       const response = await axios.post('/api/gameEvent/getAuditUploadRecordList', {
         category: 'STEP' + this.$route.query.step,
@@ -94,7 +108,7 @@ export default {
         page: this.page,
         tel_number: this.form.phone,
         status: this.form.status,
-        type: this.form.type,
+        sub_title: this.form.type,
       })
       this.reviewList = response.data.data;
       this.total = response.data.totalCount;
@@ -153,5 +167,28 @@ export default {
 
 .fix-float >>> .el-form-item__label {
   float: none;
+  margin-right: 14px;
+}
+</style>
+
+<style scoped>
+.preview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview img {
+  max-width: 80%;
+}
+
+.preview__close {
 }
 </style>

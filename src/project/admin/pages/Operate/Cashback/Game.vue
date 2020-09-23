@@ -42,7 +42,9 @@
               <el-input v-model="form.taskADescription" placeholder="请输入后续A任务描述"></el-input>
             </el-form-item>
             <el-form-item label="后续A任务奖励" prop="taskAReward" class="fix-float">
-              <el-input v-model.number="form.taskAReward" placeholder="请输入后续A任务奖励"></el-input>
+              <el-input v-model.number="form.taskAReward" placeholder="请输入后续A任务奖励">
+                <template slot="append">金币</template>
+              </el-input>
             </el-form-item>
             <el-form-item label="后续A任务示意图" prop="taskADemoFile" class="fix-float">
               <image-upload v-model="form.taskADemoFile" @change="$refs.form.validateField('taskADemoFile')"/>
@@ -54,10 +56,12 @@
           </el-form-item>
           <template v-if="form.taskBEnableTask">
             <el-form-item label="后续B任务描述" prop="taskBDescription" class="fix-float">
-              <el-input v-model="form.taskBDescription" placeholder="请输入后续B任务奖励"></el-input>
+              <el-input v-model="form.taskBDescription" placeholder="请输入后续B任务描述"></el-input>
             </el-form-item>
             <el-form-item label="后续B任务奖励" prop="taskBReward" class="fix-float">
-              <el-input v-model.number="form.taskBReward" placeholder="请输入后续B任务奖励"></el-input>
+              <el-input v-model.number="form.taskBReward" placeholder="请输入后续B任务奖励">
+                <template slot="append">金币</template>
+              </el-input>
             </el-form-item>
             <el-form-item label="后续B任务示意图" prop="taskBDemoFile" class="fix-float">
               <image-upload v-model="form.taskBDemoFile" @change="$refs.form.validateField('taskBDemoFile')"/>
