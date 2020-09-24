@@ -12,6 +12,11 @@
         <div class="tabIcon active taskIconActive"></div>
         <div class="tabText">任务</div>
       </router-link>
+<!--      <li @click="goCashbackGame">-->
+<!--        <div class="tabIcon normal taskIcon"></div>-->
+<!--        <div class="tabIcon active taskIconActive"></div>-->
+<!--        <div class="tabText">任务</div>-->
+<!--      </li>-->
       <!-- <router-link :to="{name:'Game'}" tag="li">
         <div class="tabIcon normal gameIcon"></div>
         <div class="tabIcon active gameIconActive"></div>
@@ -30,9 +35,13 @@
     </ul>
   </div>
 </template>
-<script type="text/ecmascript-6">
+<script>
   export default {
-
+    methods: {
+      goCashbackGame() {
+        window.open('/cashback-activity/', '_self');
+      },
+    }
   }
 </script>
 <style lang="less" type="text/less" scoped>

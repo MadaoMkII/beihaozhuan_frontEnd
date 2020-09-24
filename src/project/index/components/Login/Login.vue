@@ -80,7 +80,7 @@
         },
         // 微信授权登录
         wechatLogin(){
-          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/wechat/callback&response_type=code&scope=snsapi_userinfo&state=CHECK#wechat_redirect';
+          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/api/wechat/callback&response_type=code&scope=snsapi_userinfo&state=CHECK#wechat_redirect';
           window.open(url,'_self');
         },
         //跳转页面
@@ -97,7 +97,8 @@
         goRegister : function(){
           this.$router.push({
             path: '/register',
-            name:'Register'
+            name:'Register',
+            query: this.$route.query,
           })
         },
         //显示验证码区域

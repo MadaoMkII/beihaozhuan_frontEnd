@@ -177,7 +177,8 @@
       goLogin : function () {
         this.$router.push({
           path: '/login',
-          name:'Login'
+          name:'Login',
+          query: this.$route.query,
         })
       },
       //获取验证码
@@ -236,6 +237,11 @@
                     .then(res => {
                       // console.log('res', res)
                       if (res.code === '0') {
+                        if (this.$route.query.action === 'cashback-game') {
+                          let redirect = decodeURIComponent(this.$route.query.redirect || '/');
+                          window.open(redirect, '_self');
+                          return;
+                        }
                         this.$router.push({
                           path: '/completInfo',
                           name: 'CompletInfo'

@@ -166,7 +166,7 @@
         },
         // 微信授权登录
         wechatLogin(){
-          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/wechat/callback&response_type=code&scope=snsapi_userinfo&state=gift#wechat_redirect';
+          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/api/wechat/callback&response_type=code&scope=snsapi_userinfo&state=gift#wechat_redirect';
           window.open(url,'_self');
         },
       }

@@ -104,8 +104,8 @@ export default {
     async getReviewList() {
       const response = await axios.post('/api/gameEvent/getAuditUploadRecordList', {
         category: 'STEP' + this.$route.query.step,
-        unit: this.pageSize,
-        page: this.page,
+        unit: this.pageSize + '',
+        page: this.page + '',
         tel_number: this.form.phone,
         status: this.form.status,
         sub_title: this.form.type,
