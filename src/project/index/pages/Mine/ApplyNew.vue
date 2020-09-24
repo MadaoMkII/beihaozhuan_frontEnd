@@ -14,22 +14,23 @@
     </div>
     <div class="itemCon paddingRight">
       <div class="ItemTitle"><div class="borderIcon"></div>活动提现</div>
-      <div class="cashCardCon clearfix">
-        <div class="bubble">限时提现</div>
-        <div class="cashCard" :class="{'active' : twelve}" @click="changeTwelve()">¥{{twelveData.amount/100}}元</div>
-      </div>
-      <div class="tipsCon">
-        <div class="down"></div>
-        <div class="tipsTitle">限时提现说明：</div>
-        <div class="tipsDetail">该提现额度限时开放</div>
-      </div>
+      <cashback-game-withdraw-select v-model="withdrewType" :data="withdrewOptions"/>
+<!--      <div class="cashCardCon clearfix">-->
+<!--        <div class="bubble">限时提现</div>-->
+<!--        <div class="cashCard" :class="{'active' : twelve}" @click="changeTwelve()">¥{{twelveData.amount/100}}元</div>-->
+<!--      </div>-->
+<!--      <div class="tipsCon">-->
+<!--        <div class="down"></div>-->
+<!--        <div class="tipsTitle">限时提现说明：</div>-->
+<!--        <div class="tipsDetail">该提现额度限时开放</div>-->
+<!--      </div>-->
     </div>
-    <div class="itemCon">
-      <div class="ItemTitle"><div class="borderIcon"></div>常规金额</div>
-      <div class="cashCardCon clearfix">
-        <div class="cashCard" v-for='(item,index) in dataList'   @click="change(index)"   :class='{ active:index===number}'>¥{{item.amount/100}}元</div>
-      </div>
-    </div>
+<!--    <div class="itemCon">-->
+<!--      <div class="ItemTitle"><div class="borderIcon"></div>常规金额</div>-->
+<!--      <div class="cashCardCon clearfix">-->
+<!--        <div class="cashCard" v-for='(item,index) in dataList'   @click="change(index)"   :class='{ active:index===number}'>¥{{item.amount/100}}元</div>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="itemCon paddingRight">
       <div class="ItemTitle"><div class="borderIcon"></div>提现到</div>
       <div class="bindWx" :class="{'active' : hasWX}" v-if="!hasWX" @click="goToWx()">
@@ -41,8 +42,8 @@
         <div class="wxText">{{nickName}}(已绑定)</div>
       </div>
     </div>
-    <div class="submitBtn" v-if="!canClick">确认提现</div>
-    <div class="submitBtn canClick" v-else-if="canClick" @click="submit()">确认提现</div>
+    <div class="submitBtn" v-if="withdrewType === ''">确认提现</div>
+    <div class="submitBtn canClick" v-else @click="submit()">确认提现</div>
 
     <div class="mask" v-show="showPopBox"></div>
     <div class="popBox"  v-show="showPopBox">
@@ -64,137 +65,151 @@
 <script>
   import MINE from 'index/service/mine-service.js'
   import MineInfo from 'index/service/mine-service.js'
-    export default {
-      inject:['reload'],
-      name: "ApplyNew",
-      data(){
-        return{
-          showPopBox:false,
-          canClick:false,
-          hasWX:false,
-          nickName:'',
-          Bcoins:'',
-          twelve:false,
-          wxBtn:false,
-          twelveData:{},
-          dataList:[],
-          number:'',
-          optionType:'',
-          balanceRmb:''
-        }
-      },
-      created(){
-        MineInfo.getUserInfo()
+  import CashbackGameWithdrawSelect from 'index/components/CashbackGameWithdrawSelect';
+  import axios from 'axios';
+
+  export default {
+    inject:['reload'],
+    name: "ApplyNew",
+    components: {
+      CashbackGameWithdrawSelect,
+    },
+    data(){
+      return{
+        showPopBox:false,
+        canClick:false,
+        hasWX:false,
+        nickName:'',
+        Bcoins:'',
+        twelve:false,
+        wxBtn:false,
+        twelveData:{},
+        dataList:[],
+        number:'',
+        optionType:'',
+        balanceRmb:'',
+        withdrewOptions: [],
+        withdrewType: '',
+      }
+    },
+    async created(){
+      await this.getCashbackGameWithdrawOptions();
+      MineInfo.getUserInfo()
+        .then(res => {
+          // console.log('res',res)
+          if(res.code === '0'){
+            this.Bcoins = res.data.Bcoins;
+            this.balanceRmb = (this.Bcoins/10000).toFixed(2);
+          }
+        });
+      // this.Bcoins = this.$route.query.Bcoins;
+      this.getInfo();
+      this.getWechatNickName();
+    },
+    methods:{
+      //获取提现信息
+      getInfo(){
+        MINE.getWithDrewSetting()
           .then(res => {
-            // console.log('res',res)
-            if(res.code === '0'){
-              this.Bcoins = res.data.Bcoins;
-              this.balanceRmb = (this.Bcoins/10000).toFixed(2);
+            if(res.code === "0"){
+              let data = res.data.withDrewSetting;
+              for(let i=0;i<data.length;i++){
+                if(data[i].optionType === 'E'){
+                  this.twelveData = data[i]
+                }else {
+                  this.dataList.push(data[i])
+                }
+              }
             }
-          });
-        // this.Bcoins = this.$route.query.Bcoins;
-        this.getInfo();
-        this.getWechatNickName();
-      },
-      methods:{
-        //获取提现信息
-        getInfo(){
-          MINE.getWithDrewSetting()
-            .then(res => {
-              if(res.code === "0"){
-                let data = res.data.withDrewSetting;
-                for(let i=0;i<data.length;i++){
-                  if(data[i].optionType === 'E'){
-                    this.twelveData = data[i]
-                  }else {
-                    this.dataList.push(data[i])
-                  }
-                }
-              }
-            })
-        },
-        //获取微信昵称
-        getWechatNickName(){
-          MINE.getWechatNickName()
-            .then(res => {
-              if(res.code === "0"){
-                let data = res.data;
-                if(!data || data === ''){
-                  this.hasWX = false;
-                }else if(data != ''){
-                  this.hasWX = true;
-                  this.nickName = data
-                }
-              }
-            })
-        },
-        change(index) {
-          let Bcoins = this.Bcoins/10000;
-          let amount = this.dataList[index].amount/100;
-          if(Bcoins >= amount){
-            this.optionType = this.dataList[index].optionType;
-          }else{
-            this.optionType = '';
-            this.$toastMessage({message: '金币余额不足', messageType: 'text'})
-          }
-          if(this.twelve){
-            this.twelve = false;
-          }
-          this.number= index;
-          this.checkVal();  //必填项校验
-        },
-        changeTwelve(){
-          if(!this.twelve){
-            this.twelve = true;
-            this.number = '';
-          }
-          let Bcoins = this.Bcoins/10000;
-          let amount = this.twelveData.amount/100;
-          if(Bcoins >= amount){
-            this.optionType = this.twelveData.optionType;
-          }else{
-            this.optionType = '';
-            this.$toastMessage({message: '金币余额不足', messageType: 'text'})
-          }
-          this.checkVal();  //必填项校验
-        },
-        //跳转到提现记录页面
-        goPage(){
-          this.$router.push({
-            name:'Record'
           })
-        },
-        //微信授权
-        goToWx(){
-          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/api/wechat/callback&response_type=code&scope=snsapi_userinfo&state=CHECK#wechat_redirect';
-          window.open(url,'_self');
-        },
-        //检查必填项是否都已经选中
-        checkVal(){
-          let optionType = this.optionType;
-          let nickName = this.nickName;
-          if(optionType != '' && nickName != ''){
-            this.canClick = true;
-          }else {
-            this.canClick = false;
-          }
-        },
-        submit(){
-          let data ={
-            'type':this.optionType
-          }
-          MINE.withdrew(data)
-            .then(res => {
-              if(res.code == '0'){
-                this.$toastMessage({message: '提现成功', messageType: 'success'});
-                this.reload();
-              }else if(res.code == 400){
-                this.$toastMessage({message: res.data, messageType: 'text'});
+      },
+      //获取微信昵称
+      getWechatNickName(){
+        MINE.getWechatNickName()
+          .then(res => {
+            if(res.code === "0"){
+              let data = res.data;
+              if(!data || data === ''){
+                this.hasWX = false;
+              }else if(data != ''){
+                this.hasWX = true;
+                this.nickName = data
               }
-            })
+            }
+          })
+      },
+      change(index) {
+        let Bcoins = this.Bcoins/10000;
+        let amount = this.dataList[index].amount/100;
+        if(Bcoins >= amount){
+          this.optionType = this.dataList[index].optionType;
+        }else{
+          this.optionType = '';
+          this.$toastMessage({message: '金币余额不足', messageType: 'text'})
         }
+        if(this.twelve){
+          this.twelve = false;
+        }
+        this.number= index;
+        this.checkVal();  //必填项校验
+      },
+      changeTwelve(){
+        if(!this.twelve){
+          this.twelve = true;
+          this.number = '';
+        }
+        let Bcoins = this.Bcoins/10000;
+        let amount = this.twelveData.amount/100;
+        if(Bcoins >= amount){
+          this.optionType = this.twelveData.optionType;
+        }else{
+          this.optionType = '';
+          this.$toastMessage({message: '金币余额不足', messageType: 'text'})
+        }
+        this.checkVal();  //必填项校验
+      },
+      //跳转到提现记录页面
+      goPage(){
+        this.$router.push({
+          name:'Record'
+        })
+      },
+      //微信授权
+      goToWx(){
+        let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx87462aaa978561bf&redirect_uri=https%3a%2f%2fwww.beihaozhuan.com/api/wechat/callback&response_type=code&scope=snsapi_userinfo&state=CHECK#wechat_redirect';
+        window.open(url,'_self');
+      },
+      //检查必填项是否都已经选中
+      checkVal(){
+        let optionType = this.optionType;
+        let nickName = this.nickName;
+        if(optionType != '' && nickName != ''){
+          this.canClick = true;
+        }else {
+          this.canClick = false;
+        }
+      },
+      submit(){
+        MINE.withdrew({
+          type: this.withdrewType,
+        }).then(res => {
+          if(res.code == '0'){
+            this.$toastMessage({message: '提现成功', messageType: 'success'});
+            this.reload();
+          }else if(res.code == 400){
+            this.$toastMessage({message: res.data, messageType: 'text'});
+          }
+        })
+      },
+      async getCashbackGameWithdrawOptions() {
+        const response = await axios.get('/api/wechat/getWithdrewStatus');
+        this.withdrewOptions = response.data.data;
+        this.withdrewOptions.sort((a, b) => {
+          return a.amount - b.amount;
+        })
       }
     }
+  }
 </script>
 
 <style lang="less" scoped>
