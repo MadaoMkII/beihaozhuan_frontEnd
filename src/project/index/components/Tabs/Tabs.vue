@@ -7,16 +7,16 @@
         <div class="tabIcon active homeIconActive"></div>
         <div class="tabText">首页</div>
       </router-link>
-      <router-link :to="{name:'Task'}" tag="li">
-        <div class="tabIcon normal taskIcon"></div>
-        <div class="tabIcon active taskIconActive"></div>
-        <div class="tabText">任务</div>
-      </router-link>
-<!--      <li @click="goCashbackGame">-->
+<!--      <router-link :to="{name:'Task'}" tag="li">-->
 <!--        <div class="tabIcon normal taskIcon"></div>-->
 <!--        <div class="tabIcon active taskIconActive"></div>-->
 <!--        <div class="tabText">任务</div>-->
-<!--      </li>-->
+<!--      </router-link>-->
+      <li @click="goCashbackGame">
+        <div class="tabIcon normal taskIcon"></div>
+        <div class="tabIcon active taskIconActive"></div>
+        <div class="tabText">任务</div>
+      </li>
       <!-- <router-link :to="{name:'Game'}" tag="li">
         <div class="tabIcon normal gameIcon"></div>
         <div class="tabIcon active gameIconActive"></div>

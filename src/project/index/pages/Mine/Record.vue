@@ -17,7 +17,7 @@
         </div>
         <div class="footerItem">
           <div class="date">{{item.created_at}}</div>
-          <div class="coinCount">-{{item.amount * 100}}金币</div>
+          <div class="coinCount">-{{item.amount}}金币</div>
           <div class="coinIcon"></div>
         </div>
       </div>
@@ -49,7 +49,7 @@
               if(res.code === "0"){
                 if(res.count > 0){
                   for(let i=0;i<res.data.length;i++){
-                    let money = (res.data[i].amount / 100).toFixed(2);
+                    let money = (res.data[i].amount / 10000).toFixed(2);
                     res.data[i].money = money;
                   }
                   this.data = res.data;
