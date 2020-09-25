@@ -29,7 +29,6 @@
     </el-table>
     <div v-if="previewImage !== null" class="preview" @click="closePreview">
       <img :src="previewImage">
-      <div class="preview__close"></div>
     </div>
   </div>
 </template>
@@ -104,8 +103,6 @@ export default {
 
 .preview img {
   max-width: 80%;
-}
-
-.preview__close {
+  max-height: 80%;
 }
 </style>

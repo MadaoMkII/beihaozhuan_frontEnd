@@ -67,7 +67,6 @@
     </el-card>
     <div v-if="previewImage !== null" class="preview" @click="closePreview">
       <img :src="previewImage">
-      <div class="preview__close"></div>
     </div>
   </div>
 </template>
@@ -112,7 +111,7 @@ export default {
         missionUUid: this.$route.query.gameId,
       })
       this.reviewList = response.data.data;
-      this.total = response.data.totalCount;
+      this.total = response.data.count;
     },
     async submitReview(id, is) {
       if (!is) {
@@ -188,8 +187,6 @@ export default {
 
 .preview img {
   max-width: 80%;
-}
-
-.preview__close {
+  max-height: 80%;
 }
 </style>
