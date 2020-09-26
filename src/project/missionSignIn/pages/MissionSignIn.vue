@@ -98,7 +98,7 @@
         signIn() {
           let tel_number = this.tel_number;
           let that = this;
-          axios.get('https://www.beihaozhuan.com/user/signIn?tel_number='+tel_number)
+          axios.get('/api/user/signIn?tel_number='+tel_number)
             .then(function (res) {
               console.log(res.data);
               let data = res.data;

@@ -137,7 +137,7 @@
       },
       excel(){
         // window.location.href='http://192.168.1.183:3000/excel/getExcel';
-        window.location.href='https://www.beihaozhuan.com/excel/getExcel';
+        window.location.href='https://www.beihaozhuan.com/api/excel/getExcel';
       }
     }
   }

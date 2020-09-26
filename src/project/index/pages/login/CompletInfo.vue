@@ -86,7 +86,7 @@
           formData.append('nickName', this.nickName);
           formData.append('birthday', this.birthday);
 
-          axios.post('https://www.beihaozhuan.com/user/updateInfo',
+          axios.post('/api/user/updateInfo',
             formData,
             {
               withCredentials:true,
