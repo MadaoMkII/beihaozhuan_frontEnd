@@ -42,7 +42,7 @@
         <div class="wxText">{{nickName}}(已绑定)</div>
       </div>
     </div>
-    <div class="submitBtn" v-if="withdrewType === ''">确认提现</div>
+    <div class="submitBtn" v-if="withdrewType === '' || !hasWX">确认提现</div>
     <div class="submitBtn canClick" v-else @click="submit()">确认提现</div>
 
     <div class="mask" v-show="showPopBox"></div>
