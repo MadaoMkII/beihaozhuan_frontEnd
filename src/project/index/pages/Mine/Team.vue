@@ -4,6 +4,9 @@
     <div class="bg">
       <div class="teamCount">{{total}}</div>
     </div>
+    <div class="teambar">
+      <div class="teambar__coin">累计收益：{{ totalCoin }} 金币</div>
+    </div>
 <!--    <div class="select" @click="select()">-->
 <!--      <div class="selectText">{{selectName}}</div>-->
 <!--      <div class="downIcon"></div>-->
@@ -23,7 +26,12 @@
           <img class="imgCon" v-bind:src="item.avatar">
         </div>
         <div class="nickName">{{item.nickName}}</div>
-        <div class="time">{{item.created_at}}</div>
+        <div class="amount">
+          金币收入：{{item.amount}}
+          <div class="time">
+            {{item.created_at}}
+          </div>
+        </div>
       </div>
     </div>
     <div class="footerTips">已经到底了</div>
@@ -37,6 +45,7 @@
       name: "Team",
       data(){
         return {
+          totalCoin: 0,
           showSelect :false,
           selectName : '全部',
           teamList:[],
@@ -99,6 +108,7 @@
               if(res.code === '0'){
                 this.teamList = res.data;
                 this.total = res.data.length;
+                this.totalCoin = res.totalAmount;
               }
             });
         }
@@ -107,6 +117,29 @@
 </script>
 
 <style lang="less" scoped >
+.amount {
+  float: right;
+  margin-right: 24px;
+  opacity: .6;
+  text-align: right;
+  color: #DDB67F;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+}
+.teambar {
+  height: 120px;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  &__coin {
+    font-size: 32px;
+    font-weight: 400;
+    color: #DDB67F;
+    line-height: 40px;
+  }
+}
   .teamCon{
     width: 100%;
     height: 100%;
@@ -214,6 +247,9 @@
     height: 120px;
     margin-left: 24px;
     border-bottom: 2px solid #21232F;
+    //display: flex;
+    //justify-content: space-between;
+    //position: relative;
   }
   .headImg{
     width: 36*2px;
@@ -223,7 +259,7 @@
     margin-top: 24px;
   }
   .nickName{
-    width: 172*2px;
+    width: 172px;
     height: 36*2px;
     line-height: 36*2px;
     font-size: 28px;
@@ -235,13 +271,9 @@
     margin-top: 24px;
   }
   .time{
-    width: 135*2px;
-    height: 36*2px;
-    line-height: 36*2px;
     opacity: .6;
     text-align: right;
-    float: left;
-    margin-top: 24px;
+    line-height: 1;
   }
   .footerTips{
     width: 100%;

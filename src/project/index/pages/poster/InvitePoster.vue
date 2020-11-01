@@ -5,11 +5,11 @@
     <div class="posterBox">
 
       <div id="posterHtml" ref="posterHtml" v-show="showPosterImg">
-        <img id="bgImg" class="imgCon" src="../../assets/poster/invitePoster.png" alt="">
-        <div class="posterCon">
-          <div class="posterItem">您的朋友 {{phone}} 邀请您</div>
-          <div class="posterItem">贝好赚送您现金红包已到账</div>
-        </div>
+        <img id="bgImg" class="imgCon" src="../../assets/poster/invitePoster1.png" alt="">
+<!--        <div class="posterCon">-->
+<!--          <div class="posterItem">您的朋友 {{phone}} 邀请您</div>-->
+<!--          <div class="posterItem">贝好赚送您现金红包已到账</div>-->
+<!--        </div>-->
         <!-- 二维码 -->
         <div class="qrcode"><div id="qrcodeImg"></div></div>
       </div>

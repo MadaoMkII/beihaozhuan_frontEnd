@@ -23,7 +23,7 @@
         <template slot-scope="scope">
           <el-button type="text" @click="$router.push({ name: 'CashbackGame', query: { step: $route.params.step, type: 'edit', id: scope.row.uuid, payload: JSON.stringify(scope.row) } })">编辑</el-button>
           <el-button v-if="$route.params.step !== '1'" type="text" @click="deleteGame(scope.row.uuid)">删除</el-button>
-          <el-button type="text" @click="$router.push({ name: 'CashbackReview', query: { step: $route.params.step, gameId: scope.row.uuid } })">审核（{{ scope.row.unCheckedAmount }}）</el-button>
+          <el-button type="text" @click="$router.push({ name: 'CashbackReview', query: { step: $route.params.step, gameId: scope.row.uuid } })"><span :style="{ color: scope.row.unCheckedAmount > 0 ? 'red': false }">审核（{{ scope.row.unCheckedAmount }}）</span></el-button>
         </template>
       </el-table-column>
     </el-table>

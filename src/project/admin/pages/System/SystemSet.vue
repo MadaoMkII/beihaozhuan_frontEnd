@@ -100,6 +100,15 @@
         <el-input-number v-model="weighting" controls-position="right" :min="0"></el-input-number>
       </div>
     </div>
+    <div class="systemLabel">
+      返利配置
+    </div>
+    <div class="rebate-config">
+      <ul>
+        <li>邀请用户金币获取返利<input v-model="rewardPercent" type="number" min="0" max="100"/>%，空内填写数字，大等于0的数字；</li>
+        <li v-for="(config, i) in gameEventReward" :key="i">每<input v-model="config.limitNumber" type="number" min="0"/>个三级用户完成第{{i + 2}}步任务，给予第一级用户奖励<input v-model="config.amount" type="number" min="0"/>金币；</li>
+      </ul>
+    </div>
     <div class="saveCon">
       <el-button type="primary" class="CoBtn" @click="saveSystemSet()">保存</el-button>
     </div>
@@ -128,7 +137,9 @@
             activity: true
           },
           weighting: '',
-          serviceNumber : ''
+          serviceNumber : '',
+          rewardPercent: 0.99,
+          gameEventReward: [],
         }
       },
       created(){
@@ -142,6 +153,15 @@
               console.log('res',res);
               if(res.code === "0"){
                 let data = res.data;
+                this.rewardPercent = data.rewardPercent;
+                this.gameEventReward = data.gameEventReward;
+                // this.gameEventReward = [
+                //   { category: 'STEP2', limitNumber: 2, amount: 2 },
+                //   { category: 'STEP3', limitNumber: 3, amount: 3 },
+                //   { category: 'STEP4', limitNumber: 4, amount: 4 },
+                //   { category: 'STEP5', limitNumber: 5, amount: 5 },
+                //   { category: 'STEP6', limitNumber: 6, amount: 6 }
+                // ];
                 this.registerMission.activity = data.registerMission.activity === 'enable' ? true : false;
                 this.registerMission.reward = data.registerMission.reward;
                 // this.inviteMission.numberOfInvite = data.inviteMission.numberOfInvite;
@@ -198,7 +218,9 @@
             //   "activity": inviteActivity ? 'enable' : 'disable'
             // },
             "weighting": this.weighting,
-            "serviceNumber": phoneList
+            "serviceNumber": phoneList,
+            rewardPercent: this.rewardPercent,
+            gameEventReward: this.gameEventReward
           };
           SYSTEM.systemSet(data)
             .then(res => {
@@ -276,5 +298,18 @@
   }
   .saveCon{
     text-align: center;
+  }
+  .rebate-config {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rebate-config > ul {
+    margin-bottom: 24px;
+  }
+
+  .rebate-config > ul > li {
+    margin-bottom: 10px;
   }
 </style>
