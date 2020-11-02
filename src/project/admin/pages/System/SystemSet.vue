@@ -105,8 +105,8 @@
     </div>
     <div class="rebate-config">
       <ul>
-        <li>邀请用户金币获取返利<input v-model="rewardPercent" type="number" min="0" max="100"/>%，空内填写数字，大等于0的数字；</li>
-        <li v-for="(config, i) in gameEventReward" :key="i">每<input v-model="config.limitNumber" type="number" min="0"/>个三级用户完成第{{i + 2}}步任务，给予第一级用户奖励<input v-model="config.amount" type="number" min="0"/>金币；</li>
+        <li>邀请用户金币获取返利<el-input class="rebate-config__input" v-model="rewardPercent" type="number" min="0" max="100"/>%，空内填写数字，大等于0的数字</li>
+        <li v-for="(config, i) in gameEventReward" :key="i">每<el-input class="rebate-config__input" v-model="config.limitNumber" type="number" min="0"/>个三级用户完成第{{i + 2}}步任务，给予第一级用户奖励<el-input class="rebate-config__input" v-model="config.amount" type="number" min="0"/>金币</li>
       </ul>
     </div>
     <div class="saveCon">
@@ -307,9 +307,17 @@
 
   .rebate-config > ul {
     margin-bottom: 24px;
+    list-style: none;
   }
 
   .rebate-config > ul > li {
     margin-bottom: 10px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, .85);
+  }
+
+  .rebate-config .rebate-config__input {
+    width: 100px;
+    margin: 0 10px;
   }
 </style>
