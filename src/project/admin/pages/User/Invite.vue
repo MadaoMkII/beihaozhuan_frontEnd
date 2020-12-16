@@ -48,9 +48,9 @@
         MineInfo.getMyTeam(data)
           .then(res => {
             // console.log('res',res);
-            if(res.code === '0'){
+            if (res.code == 0){
               this.tableData = res.data;
-              this.page.total = res.data.length;
+              this.page.total = res.count;
             }
           });
       },

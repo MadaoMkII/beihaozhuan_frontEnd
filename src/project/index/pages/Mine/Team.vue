@@ -107,7 +107,7 @@
               console.log('res',res);
               if(res.code === '0'){
                 this.teamList = res.data;
-                this.total = res.data.length;
+                this.total = res.count;
                 this.totalCoin = res.totalAmount;
               }
             });
