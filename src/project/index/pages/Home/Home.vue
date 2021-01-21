@@ -342,16 +342,18 @@
     background:linear-gradient(180deg,rgba(40,42,55,1) 0%,rgba(49,51,64,1) 100%);
   }
   .taskTitle{
-    width: 138*2px;
+    width: 138*3px;
     /*height: 80px;*/
     margin: auto;
     padding-top: 20px;
     padding-bottom: 40px;
   }
   .taskTitleImg{
-    width: 138*2px;
+    width: 138*3px;
     height: 80px;
     .bg-image("~index/assets/home/taskList");
+    background-size: contain;
+    background-position: center;
   }
   .taskList{
     width: 351*2px;
